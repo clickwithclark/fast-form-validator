@@ -31,16 +31,26 @@ export const FFV = (function () {
      }
 
   }
+  function escapeRegex(string) {
+    return string.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+}
   function defaultPasswordStrategy(min=6,max=15){
+    let passwordErrorMessage =`❌Password must contain:\n One uppercase letter\n One lowercase letter\n One digit\n Between ${min} to ${max} characters long`;
     
-    
-    const validPasswordRegex = new RegExp(`/((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{${min},${max}})/`, 'i');
+    const validPasswordRegex = new RegExp(String.raw`((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{${min},${max}})`, 'i');
+   
+ 
     if (!this.passwordValue) {
       this.passwordError = '❌Password cannot be empty';
     }
     if (this.passwordValue && !validPasswordRegex.test(this.passwordValue)) {
-      this.passwordError =
-        '❌Password must contain:\n One uppercase letter\n One lowercase letter\n One digit\n Between 6 to 15 characters long';
+ 
+      this.passwordError =passwordErrorMessage
+        
+    }
+    if (this.passwordValue.length>max) {
+      this.passwordError= passwordErrorMessage;
+      
     }
 
   }

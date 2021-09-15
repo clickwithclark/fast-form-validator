@@ -14,12 +14,12 @@
     FFV.defaults.email('email');
     FFV.defaults.password('password',4,12);
     FFV.defaults.minimumAge('dob',18); 
-    FFV.theseIDs='username';
-    FFV.setStrategy('username',function(){
-      if (!this.usernameValue) {
-        this.usernameError="Username cannot be empty"
-      }
-    })        
+    // FFV.theseIDs='username';
+    // FFV.setStrategy('username',function(){
+    //   if (!this.usernameValue) {
+    //     this.usernameError="Username cannot be empty"
+    //   }
+    // })        
     FFV.validate();
     // FFV.theseIDs = 'email,password,dob,username';
     // FFV.displayErrorsHere('showErrors');
