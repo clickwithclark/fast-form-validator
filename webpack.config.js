@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-    entry: ['./index.js'],
+    entry: ['./src/index.js'],
     output: {
       filename: 'ffv.min.js',
       path: path.resolve(__dirname, 'UMD'),

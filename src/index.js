@@ -223,7 +223,7 @@ function argumentsFor(id){
   const publicFacingApi = {
     // getApi, remove
     defaults,
-    getState,
+    //getState,
     validate,
     setStrategy,
     displayErrorsHere
