@@ -210,11 +210,9 @@ function argumentsFor(id){
     formInputs.forEach((id) => {
       const oneTypeOfErrors = formState.errors[id];
       oneTypeOfErrors.forEach((singleError) => {
-        console.log(singleError);
         const li = document.createElement('li');
         li.textContent = singleError;
         ul.appendChild(li);
-        console.log(ul.appendChild(li));
       });
     });
 
