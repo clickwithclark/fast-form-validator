@@ -8,12 +8,11 @@ module.exports = {
      
     library: {
       type: 'umd',
-      name: 'FFV',
     },
     // prevent error: `Uncaught ReferenceError: self is not define`
     // globalObject: 'this',
     },
-    mode: 'production',
+    mode: 'development',
 
   };
   
