@@ -136,7 +136,10 @@ export const FFV = (function () {
   }
 
   function executeStrategyOf(inputId) {
-    console.table("args are:",..argumentsFor(inputId));
+    if (!argumentsFor(inputId)) {
+      formState.strategies[inputId]();
+      return;
+    }
     formState.strategies[inputId](...argumentsFor(inputId));
   }
 function argumentsFor(id){
