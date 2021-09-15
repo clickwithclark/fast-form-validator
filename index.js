@@ -123,6 +123,7 @@ export const FFV = (function () {
         get() {
           return formState[id];
         },
+        configurable:true
       });
  
   }
@@ -208,10 +209,12 @@ function argumentsFor(id){
     // eslint-disable-next-line arrow-body-style
     formInputs.forEach((id) => {
       const oneTypeOfErrors = formState.errors[id];
-      const li = document.createElement('li');
       oneTypeOfErrors.forEach((singleError) => {
+        console.log(singleError);
+        const li = document.createElement('li');
         li.textContent = singleError;
         ul.appendChild(li);
+        console.log(ul.appendChild(li));
       });
     });
 
@@ -230,7 +233,10 @@ function argumentsFor(id){
   };
   Object.defineProperty(publicFacingApi, 'theseIDs', {
     set(listOfIDs) {
-      formInputs = listOfIDs.split(',');
+      console.log({formInputsB4:formInputs});
+      formInputs = [...formInputs,...listOfIDs.split(',')];
+      
+      console.log({formInputsAfter:formInputs});
       formInputs.forEach((inputId) =>   initializeInput(inputId) );
       setStatus(false);
     },

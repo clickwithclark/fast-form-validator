@@ -14,12 +14,15 @@
     FFV.defaults.email('email');
     FFV.defaults.password('password',4,12);
     FFV.defaults.minimumAge('dob',18); 
-    // FFV.theseIDs='username';
-    // FFV.setStrategy('username',function(){
-    //   if (!this.usernameValue) {
-    //     this.usernameError="Username cannot be empty"
-    //   }
-    // })        
+    FFV.theseIDs='username';
+    FFV.setStrategy('username',function(){
+      if (!this.usernameValue) {
+        this.usernameError="❌Username cannot be empty"
+      }
+      if (this.usernameValue.length<6) {
+        this.usernameError="❌Username must be at least 6 characters long"
+      }
+    })        
     FFV.validate();
     // FFV.theseIDs = 'email,password,dob,username';
     // FFV.displayErrorsHere('showErrors');
@@ -88,7 +91,7 @@
 </head>
 
 <body>
-  <div class="container mt-5 w-25">
+  <div class="container mt-5" style=" max-width: 720px;">
     <form>
       <div class="mb-3">
         <label for="username" class="form-label">Username</label>
