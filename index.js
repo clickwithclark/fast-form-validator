@@ -15,7 +15,7 @@ export const FFV = (function () {
         this.emailError = '❌Email must be valid';
 
   }}
-  function defaultDateOfBirthStrategy(minAge){
+  function defaultDateOfBirthStrategy(minAge=18){
      // compare dates in milliseconds
      const dob = new Date(this.dobValue).getTime();
      const today = new Date().getTime();
@@ -23,13 +23,11 @@ export const FFV = (function () {
      if (!this.dobValue) {
        this.dobError = '❌Date of birth must be valid';
      }
-     if (this.dobValue && this.usernameValue.length < 6) {
-       this.usernameError = '❌Username must be at least 6 characters long';
-     }
+    
      // 18yrs x 365days * 24hrs * 60 mins * 60 seconds * 1000 milliseconds
      // 365.25 for leap year considerations
      if (today - minAge * 365.25 * 24 * 60 * 60 * 1000 <= dob) {
-       this.dobError = '❌Minimum age is 18 years';
+       this.dobError = `❌Minimum age is ${minAge} years`;
      }
 
   }
@@ -66,7 +64,7 @@ export const FFV = (function () {
   }
   //====================VVVVVV=====================
 
-  defaults.minimumAge = function(id,age){
+  defaults.minimumAge = function(id,age=18){
     formInputs.push(id)
     initializeInput(id);
     setStrategy(id, defaultDateOfBirthStrategy)
