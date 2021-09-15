@@ -15,7 +15,7 @@ export const FFV = (function () {
         this.emailError = '❌Email must be valid';
 
   }}
-  function defaultDateStrategy(minAge){
+  function defaultDateOfBirthStrategy(minAge){
      // compare dates in milliseconds
      const dob = new Date(this.dobValue).getTime();
      const today = new Date().getTime();
@@ -49,28 +49,31 @@ export const FFV = (function () {
 
   defaults.email = function(id){
     formInputs.push(id);
-    initializeInputs();
+    initializeInput(id);
     setStrategy(id, defaultEmailStrategy);
     formState.strategies[`${id}Args`] =[...arguments];
     formState.strategies[id]();
     
   }
-  //====================VVVVVV=====================
+
   defaults.password = function(id,minLength=6,maxLength=15){
     formInputs.push(id)
-    initializeInputs();
+    initializeInput(id);
     setStrategy(id, defaultPasswordStrategy);
     formState.strategies[`${id}Args`] =[...arguments].slice(1);
     formState.strategies[id]();
     
   }
-  // defaults.minimumAge = function(id,age){
-  //   formInputs.push(id)
-  //   setStrategy(id, defaultDateStrategy)
-  //   formState.strategies[id](age);
-  //   formState.strategies[`${id}Args`] =arguments;
+  //====================VVVVVV=====================
+
+  defaults.minimumAge = function(id,age){
+    formInputs.push(id)
+    initializeInput(id);
+    setStrategy(id, defaultDateOfBirthStrategy)
+    formState.strategies[`${id}Args`]  =[...arguments].slice(1);
+    formState.strategies[id]();
     
-  // }
+  }
 
   
 
@@ -100,23 +103,19 @@ export const FFV = (function () {
       element.addEventListener('input', evaluateInput);
     });
   }
-  function buildErrorList() {
-    const errors = {};
-    formInputs.forEach((input) => {
-      errors[input] = [];
-    });
-    setFormState({ errors });
+  function buildErrorList(id) {
+      let newError ={[id]:[]}
+      formState.errors = {...formState.errors,...newError}
+  
   }
-  function initInputValues() {
-    formInputs.forEach((input) => {
-      setFormState({ [input]: '' });
+  function initInputValues(id) {
+      setFormState({ [id]: '' });
 
-      Object.defineProperty(publicFacingApi, `${input}Value`, {
+      Object.defineProperty(publicFacingApi, `${id}Value`, {
         get() {
-          return formState[input];
+          return formState[id];
         },
       });
-    });
  
   }
 
@@ -220,17 +219,16 @@ function argumentsFor(id){
   Object.defineProperty(publicFacingApi, 'theseIDs', {
     set(listOfIDs) {
       formInputs = listOfIDs.split(',');
-      initializeInputs();
+      formInputs.forEach((inputId) =>   initializeInput(inputId) );
       setStatus(false);
     },
   });
   //remove
-console.log(formState);
   return publicFacingApi;
 
-  function initializeInputs() {
-    buildErrorList();
-    initInputValues();
+  function initializeInput(id) {
+    buildErrorList(id);
+    initInputValues(id);
   }
 })();
 
