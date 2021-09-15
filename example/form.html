@@ -10,7 +10,6 @@
 
   <script defer src="../UMD/ffv.min.js"></script>
   <script type="module" defer>
-    FFV.displayErrorsHere('showErrors');
     FFV.defaults.email('email');
     FFV.defaults.password('password',4,12);
     FFV.defaults.minimumAge('dob',18); 
@@ -23,64 +22,10 @@
         this.usernameError="❌Username must be at least 6 characters long"
       }
     })        
+    FFV.displayErrorsHere('showErrors');
+
     FFV.validate();
-    // FFV.theseIDs = 'email,password,dob,username';
-    // FFV.displayErrorsHere('showErrors');
-    // FFV.setStrategy('password', passwordStrategy);
-    // FFV.setStrategy('username', usernameStrategy);
-    // FFV.setStrategy('dob', dateOfBirthStrategy);
-    // FFV.setStrategy('email', function () {
-    //   // eslint-disable-next-line no-useless-escape
-    //   const validEmailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    //   if (!this.emailValue) {
-    //     this.emailError = '❌Email cannot be empty';
-    //   }
-    //   if (this.emailValue && !validEmailRegex.test(this.emailValue)) {
-    //     this.emailError = '❌Email must be valid';
-    //   }
-    // });
-    // FFV.validate();
-    // // fake init
-    // function passwordStrategy() {
-    //   const validPasswordRegex = /((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,15})/;
-    //   if (!this.passwordValue) {
-    //     this.passwordError = '❌Password cannot be empty';
-    //   }
-    //   if (this.passwordValue && !validPasswordRegex.test(this.passwordValue)) {
-    //     this.passwordError =
-    //       '❌Password must contain:\n One uppercase letter\n One lowercase letter\n One digit\n Between 6 to 15 characters long';
-    //   }
-    // }
-
-    // function usernameStrategy() {
-    //   if (!this.usernameValue) {
-    //     this.usernameError = '❌Username cannot be empty';
-    //   }
-    //   if (this.usernameValue && this.usernameValue.length < 6) {
-    //     this.usernameError = '❌Username must be at least 6 characters long';
-    //   }
-    // }
-
-    // function dateOfBirthStrategy() {
-    //   // compare dates in milliseconds
-    //   const dob = new Date(this.dobValue).getTime();
-    //   const today = new Date().getTime();
-
-    //   if (!this.dobValue) {
-    //     this.dobError = '❌Date of birth must be valid';
-    //   }
-    //   if (this.dobValue && this.usernameValue.length < 6) {
-    //     this.usernameError = '❌Username must be at least 6 characters long';
-    //   }
-    //   // 18yrs x 365days * 24hrs * 60 mins * 60 seconds * 1000 milliseconds
-    //   // 365.25 for leap year considerations
-    //   if (today - 18 * 365.25 * 24 * 60 * 60 * 1000 <= dob) {
-    //     this.dobError = '❌Minimum age is 18 years';
-    //   }
-    // }
-
-    // inline function example
-    // Limitation: cannot use arrow functions for inline strategy functions
+    
   </script>
   <style type="">
     body{

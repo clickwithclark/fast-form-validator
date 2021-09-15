@@ -191,9 +191,9 @@ function argumentsFor(id){
   
   }
     //remove
-  function getState() {
-    return formState;
-  }
+  // function getState() {
+  //   return formState;
+  // }
   function displayErrorsHere(htmlID) {
     formState.feedbackElement = htmlID;
     const errorBlock = document.getElementById(htmlID);
@@ -239,7 +239,6 @@ function argumentsFor(id){
       setStatus(false);
     },
   });
-  //remove
   return publicFacingApi;
 
   function initializeInput(id) {
