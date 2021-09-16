@@ -36,7 +36,6 @@ export const FFV = (function () {
     }
   }
   function defaultDateOfBirthStrategy(minAge = 18) {
-    // compare dates in milliseconds
     const dob = new Date(this.dobValue).getTime();
     const today = new Date().getTime();
 
@@ -84,7 +83,6 @@ export const FFV = (function () {
     formState.strategies[id]();
     return this;
   };
-  //= ===================VVVVVV=====================
 
   defaults.dateOfBirth = function (id, age = 18) {
     formInputs.push(id);
@@ -99,9 +97,6 @@ export const FFV = (function () {
     formState = { ...formState, ...newState };
   }
 
-  // function getApi() {
-  //   return publicFacingApi;
-  // }
   function captureElements() {
     return formInputs.map((element) => document.getElementById(element));
   }
