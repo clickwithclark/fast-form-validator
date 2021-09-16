@@ -11,22 +11,21 @@
   <script defer src="../UMD/ffv.min.js"></script>
   <script type="module" defer>
     FFV.onEmail('email')
-  // .onPassword('password', 6, 22)
-  // .onDateOfBirth('dob', 18)
+  .onPassword('password', 4, 22)
+  .onDateOfBirth('dob', 18)
   .onTheseIDs('username')
   .setStrategy('username', function () {
     if (!this.usernameValue) {
           this.usernameError = '❌Username cannot be empty';
         }
-    if (this.usernameValue.length < 1) {
+    if (this.usernameValue.length < 6) {
           this.usernameError = '❌Username must be at least 6 characters long';
     }
   })
   .displayErrorsHere('showErrors')
   .onSubmitButton('submitBtn', () => {
-    console.log(FFV.validate());
         if (FFV.validate()) {
-          alert('Hooray!');
+          alert('Hooray! 😁 your form is validated!');
           return;
         }
 
