@@ -11,22 +11,21 @@
   <script defer src="../UMD/ffv.min.js"></script>
   <script type="module" defer>
     FFV.defaults.email('email');
-    FFV.defaults.password('password',4,12);
-    FFV.defaults.minimumAge('dob',18); 
-    FFV.theseIDs='username';
-    FFV.setStrategy('username',function(){
+    FFV.defaults.password('password', 6, 22);
+    FFV.defaults.minimumAge('dob', 18);
+    FFV.theseIDs = 'username';
+    FFV.setStrategy('username', function () {
       if (!this.usernameValue) {
-        this.usernameError="❌Username cannot be empty"
+        this.usernameError = '❌Username cannot be empty';
       }
-      if (this.usernameValue.length<6) {
-        this.usernameError="❌Username must be at least 6 characters long"
+      if (this.usernameValue.length < 6) {
+        this.usernameError = '❌Username must be at least 6 characters long';
       }
-    })        
+    });
     FFV.displayErrorsHere('showErrors');
 
     FFV.validate();
-    
-  </script>
+      </script>
   <style type="">
     body{
   background: linear-gradient(270deg, #222b2c, #2a3c39, #354c43, #475d4a, #5f6d4f, #7d7b54, #9e885d, #c2936d);

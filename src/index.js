@@ -1,89 +1,74 @@
-
 /* eslint-disable no-use-before-define */
 export const FFV = (function () {
   let formInputs = [];
   let formState = {};
-  let defaults = {};
-  function defaultEmailStrategy(){
-    
-      // eslint-disable-next-line no-useless-escape
-      const validEmailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-      if (!this.emailValue) {
-        this.emailError = '❌Email cannot be empty';
-      }
-      if (this.emailValue && !validEmailRegex.test(this.emailValue)) {
-        this.emailError = '❌Email must be valid';
-
-  }}
-  function defaultDateOfBirthStrategy(minAge=18){
-     // compare dates in milliseconds
-     const dob = new Date(this.dobValue).getTime();
-     const today = new Date().getTime();
-
-     if (!this.dobValue) {
-       this.dobError = '❌Date of birth must be valid';
-     }
-    
-     // 18yrs x 365days * 24hrs * 60 mins * 60 seconds * 1000 milliseconds
-     // 365.25 for leap year considerations
-     if (today - minAge * 365.25 * 24 * 60 * 60 * 1000 <= dob) {
-       this.dobError = `❌Minimum age is ${minAge} years`;
-     }
-
+  const defaults = {};
+  function defaultEmailStrategy() {
+    // eslint-disable-next-line no-useless-escape
+    const validEmailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (!this.emailValue) {
+      this.emailError = '❌Email cannot be empty';
+    }
+    if (this.emailValue && !validEmailRegex.test(this.emailValue)) {
+      this.emailError = '❌Email must be valid';
+    }
   }
-  function escapeRegex(string) {
-    return string.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-}
-  function defaultPasswordStrategy(min=6,max=15){
-    let passwordErrorMessage =`❌Password must contain:\n One uppercase letter\n One lowercase letter\n One digit\n Between ${min} to ${max} characters long`;
-    
+  function defaultDateOfBirthStrategy(minAge = 18) {
+    // compare dates in milliseconds
+    const dob = new Date(this.dobValue).getTime();
+    const today = new Date().getTime();
+
+    if (!this.dobValue) {
+      this.dobError = '❌Date of birth must be valid';
+    }
+
+    // 18yrs x 365days * 24hrs * 60 mins * 60 seconds * 1000 milliseconds
+    // 365.25 for leap year considerations
+    if (today - minAge * 365.25 * 24 * 60 * 60 * 1000 <= dob) {
+      this.dobError = `❌Minimum age is ${minAge} years`;
+    }
+  }
+
+  function defaultPasswordStrategy(min = 6, max = 15) {
+    const passwordErrorMessage = `❌Password must contain:\n\t One uppercase letter\n\t One lowercase letter\n\t One digit\n\t Between ${min} to ${max} characters long`;
+
     const validPasswordRegex = new RegExp(String.raw`((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{${min},${max}})`, 'i');
-   
- 
+
     if (!this.passwordValue) {
       this.passwordError = '❌Password cannot be empty';
     }
     if (this.passwordValue && !validPasswordRegex.test(this.passwordValue)) {
- 
-      this.passwordError =passwordErrorMessage
-        
+      this.passwordError = passwordErrorMessage;
     }
-    if (this.passwordValue.length>max) {
-      this.passwordError= passwordErrorMessage;
-      
+    if (this.passwordValue.length > max) {
+      this.passwordError = passwordErrorMessage;
     }
-
   }
 
-  defaults.email = function(id){
+  defaults.email = function (id) {
     formInputs.push(id);
     initializeInput(id);
     setStrategy(id, defaultEmailStrategy);
-    formState.strategies[`${id}Args`] =[...arguments];
+    formState.strategies[`${id}Args`] = [...arguments];
     formState.strategies[id]();
-    
-  }
+  };
 
-  defaults.password = function(id,minLength=6,maxLength=15){
-    formInputs.push(id)
+  defaults.password = function (id, minLength = 6, maxLength = 15) {
+    formInputs.push(id);
     initializeInput(id);
     setStrategy(id, defaultPasswordStrategy);
-    formState.strategies[`${id}Args`] =[...arguments].slice(1);
+    formState.strategies[`${id}Args`] = [...arguments].slice(1);
     formState.strategies[id]();
-    
-  }
-  //====================VVVVVV=====================
+  };
+  //= ===================VVVVVV=====================
 
-  defaults.minimumAge = function(id,age=18){
-    formInputs.push(id)
+  defaults.minimumAge = function (id, age = 18) {
+    formInputs.push(id);
     initializeInput(id);
-    setStrategy(id, defaultDateOfBirthStrategy)
-    formState.strategies[`${id}Args`]  =[...arguments].slice(1);
+    setStrategy(id, defaultDateOfBirthStrategy);
+    formState.strategies[`${id}Args`] = [...arguments].slice(1);
     formState.strategies[id]();
-    
-  }
-
-  
+  };
 
   function setFormState(newState) {
     formState = { ...formState, ...newState };
@@ -112,28 +97,28 @@ export const FFV = (function () {
     });
   }
   function buildErrorList(id) {
-      let newError ={[id]:[]}
-      formState.errors = {...formState.errors,...newError}
-  
+    const newError = { [id]: [] };
+    formState.errors = { ...formState.errors, ...newError };
   }
   function initInputValues(id) {
-      setFormState({ [id]: '' });
+    setFormState({ [id]: '' });
 
-      Object.defineProperty(publicFacingApi, `${id}Value`, {
-        get() {
-          return formState[id];
-        },
-        configurable:true
-      });
- 
+    Object.defineProperty(publicFacingApi, `${id}Value`, {
+      get() {
+        return formState[id];
+      },
+      configurable: true,
+    });
   }
 
-  function setStatus(status) {
-    formState.isValid = status;
+  function setFormStatus(isValid) {
+    formState.isValid = isValid;
+  }
+  function getFormStatus() {
+    return formState.isValid;
   }
 
   function executeStrategies() {
-    
     if (hasMissingStrategies().length) {
       console.error(`Validation strategies have not been set for the following ID's: \n${hasMissingStrategies().join('\n')}`);
       return;
@@ -144,6 +129,19 @@ export const FFV = (function () {
       executeStrategyOf(inputId);
     });
     displayErrorsHere(formState.feedbackElement);
+
+    if (formHasErrors()) {
+      return setFormStatus(false);
+    }
+    return setFormStatus(true);
+  }
+
+  function formHasErrors() {
+    let amountOfErrorsFound = 0;
+    formInputs.forEach((inputId) => {
+      amountOfErrorsFound += formState.errors[inputId].length;
+    });
+    return !!amountOfErrorsFound;
   }
 
   function executeStrategyOf(inputId) {
@@ -153,9 +151,9 @@ export const FFV = (function () {
     }
     formState.strategies[inputId](...argumentsFor(inputId));
   }
-function argumentsFor(id){
-  return formState.strategies[`${id}Args`];
-}
+  function argumentsFor(id) {
+    return formState.strategies[`${id}Args`];
+  }
   function hasMissingStrategies() {
     const missingStrategies = [];
     formInputs.forEach((id) => {
@@ -171,6 +169,7 @@ function argumentsFor(id){
     const dirtyElements = captureElements();
     listenToInputs(dirtyElements);
     executeStrategies();
+    return getFormStatus();
   }
 
   function setStrategy(id, strategyFunction) {
@@ -187,13 +186,8 @@ function argumentsFor(id){
 
     const newStrategy = { [id]: strategyFunction.bind(publicFacingApi) };
     formState.strategies = { ...formState.strategies, ...newStrategy };
-
-  
   }
-    //remove
-  // function getState() {
-  //   return formState;
-  // }
+
   function displayErrorsHere(htmlID) {
     formState.feedbackElement = htmlID;
     const errorBlock = document.getElementById(htmlID);
@@ -221,22 +215,16 @@ function argumentsFor(id){
     errorBlock.appendChild(ul);
   }
   const publicFacingApi = {
-    // getApi, remove
     defaults,
-    //getState,
     validate,
     setStrategy,
-    displayErrorsHere
-    
+    displayErrorsHere,
   };
   Object.defineProperty(publicFacingApi, 'theseIDs', {
     set(listOfIDs) {
-      console.log({formInputsB4:formInputs});
-      formInputs = [...formInputs,...listOfIDs.split(',')];
-      
-      console.log({formInputsAfter:formInputs});
-      formInputs.forEach((inputId) =>   initializeInput(inputId) );
-      setStatus(false);
+      formInputs = [...formInputs, ...listOfIDs.split(',')];
+      formInputs.forEach((inputId) => initializeInput(inputId));
+      setFormStatus(false);
     },
   });
   return publicFacingApi;
@@ -246,7 +234,3 @@ function argumentsFor(id){
     initInputValues(id);
   }
 })();
-
-
-
- 
