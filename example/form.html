@@ -10,21 +10,31 @@
 
   <script defer src="../UMD/ffv.min.js"></script>
   <script type="module" defer>
-    FFV.defaults.email('email');
-    FFV.defaults.password('password', 6, 22);
-    FFV.defaults.minimumAge('dob', 18);
-    FFV.theseIDs = 'username';
-    FFV.setStrategy('username', function () {
-      if (!this.usernameValue) {
-        this.usernameError = '❌Username cannot be empty';
-      }
-      if (this.usernameValue.length < 6) {
-        this.usernameError = '❌Username must be at least 6 characters long';
-      }
-    });
-    FFV.displayErrorsHere('showErrors');
+    FFV.onEmail('email')
+  // .onPassword('password', 6, 22)
+  // .onDateOfBirth('dob', 18)
+  .onTheseIDs('username')
+  .setStrategy('username', function () {
+    if (!this.usernameValue) {
+          this.usernameError = '❌Username cannot be empty';
+        }
+    if (this.usernameValue.length < 1) {
+          this.usernameError = '❌Username must be at least 6 characters long';
+    }
+  })
+  .displayErrorsHere('showErrors')
+  .onSubmitButton('submitBtn', () => {
+    console.log(FFV.validate());
+        if (FFV.validate()) {
+          alert('Hooray!');
+          return;
+        }
 
-    FFV.validate();
+        // will not work happy path only
+        // feedback should be set in respective input stategies
+        alert('Please check your inputs, entry not valid😥');
+  })
+  .validate();
       </script>
   <style type="">
     body{
@@ -55,7 +65,7 @@
           <label for="dob" class="form-label">Date of Birth</label>
           <input type="date" class="form-control" id="dob" value="2021-09-11">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button id="submitBtn" type="submit" class="btn btn-primary">Submit</button>
         <div id="showErrors" class=" alert alert-dark mt-2">
 
         </div>

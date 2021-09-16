@@ -1,8 +1,30 @@
+/* eslint-disable prefer-rest-params */
 /* eslint-disable no-use-before-define */
 export const FFV = (function () {
   let formInputs = [];
   let formState = {};
   const defaults = {};
+  function stoplistening() {
+    const cleanElements = captureElements();
+    cleanElements.forEach((element) => {
+      element.removeEventListener('input', evaluateInput);
+    });
+  }
+  function handleFormSubmit(event) {
+    event.preventDefault();
+    if (getFormStatus()) {
+      stoplistening();
+      this.removeEventListener('click', handleFormSubmit);
+      formState.submitAction();
+    }
+  }
+
+  function onSubmitButton(id, submitAction) {
+    formState.submitAction = submitAction;
+    const submitBtn = document.getElementById(id);
+    submitBtn.addEventListener('click', handleFormSubmit);
+    return this;
+  }
   function defaultEmailStrategy() {
     // eslint-disable-next-line no-useless-escape
     const validEmailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -51,6 +73,7 @@ export const FFV = (function () {
     setStrategy(id, defaultEmailStrategy);
     formState.strategies[`${id}Args`] = [...arguments];
     formState.strategies[id]();
+    return this;
   };
 
   defaults.password = function (id, minLength = 6, maxLength = 15) {
@@ -59,15 +82,17 @@ export const FFV = (function () {
     setStrategy(id, defaultPasswordStrategy);
     formState.strategies[`${id}Args`] = [...arguments].slice(1);
     formState.strategies[id]();
+    return this;
   };
   //= ===================VVVVVV=====================
 
-  defaults.minimumAge = function (id, age = 18) {
+  defaults.dateOfBirth = function (id, age = 18) {
     formInputs.push(id);
     initializeInput(id);
     setStrategy(id, defaultDateOfBirthStrategy);
     formState.strategies[`${id}Args`] = [...arguments].slice(1);
     formState.strategies[id]();
+    return this;
   };
 
   function setFormState(newState) {
@@ -186,6 +211,7 @@ export const FFV = (function () {
 
     const newStrategy = { [id]: strategyFunction.bind(publicFacingApi) };
     formState.strategies = { ...formState.strategies, ...newStrategy };
+    return this;
   }
 
   function displayErrorsHere(htmlID) {
@@ -213,20 +239,25 @@ export const FFV = (function () {
     // clear html for each form validation
     errorBlock.replaceChildren();
     errorBlock.appendChild(ul);
+    return this;
+  }
+  function onTheseIDs(listOfIDs) {
+    formInputs = [...formInputs, ...listOfIDs.split(',')];
+    formInputs.forEach((inputId) => initializeInput(inputId));
+    setFormStatus(false);
+    return this;
   }
   const publicFacingApi = {
-    defaults,
+    onTheseIDs,
+    onEmail: defaults.email,
+    onPassword: defaults.password,
+    onDateOfBirth: defaults.dateOfBirth,
     validate,
     setStrategy,
+    onSubmitButton,
     displayErrorsHere,
   };
-  Object.defineProperty(publicFacingApi, 'theseIDs', {
-    set(listOfIDs) {
-      formInputs = [...formInputs, ...listOfIDs.split(',')];
-      formInputs.forEach((inputId) => initializeInput(inputId));
-      setFormStatus(false);
-    },
-  });
+
   return publicFacingApi;
 
   function initializeInput(id) {
