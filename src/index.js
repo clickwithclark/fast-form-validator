@@ -1,5 +1,6 @@
 /* eslint-disable prefer-rest-params */
 /* eslint-disable no-use-before-define */
+
 export const FFV = (function () {
   let formInputs = [];
   let formState = {};
@@ -185,13 +186,32 @@ export const FFV = (function () {
     return missingStrategies;
   }
 
-  function validate() {
-    const dirtyElements = captureElements();
-    listenToInputs(dirtyElements);
-    executeStrategies();
-    return getFormStatus();
+  /**
+   * Provide FastFormValidator with a list of IDs of the input fields
+   * to be validated
+   *
+   * @memberof FastFormValidator
+   * @function onTheseIDs
+   * @type {Function}
+   * @param  {String} listOfIDs A comma separated list of input ID's
+   * @return {FastFormValidator}  The FFV module
+   */
+  function onTheseIDs(listOfIDs) {
+    formInputs = [...formInputs, ...listOfIDs.split(',')];
+    formInputs.forEach((inputId) => initializeInput(inputId));
+    setFormStatus(false);
+    return this;
   }
 
+  /**
+   * Provide FastFormValidator with the ID of an input field and the respective function to validate that input field
+   * @memberof FastFormValidator
+   * @function setStrategy
+   * @inner
+   * @param  {String} id  ID of an input field
+   * @param  {Function} strategyFunction  function to validate that input field
+   * @return {FastFormValidator}  The FFV module
+   */
   function setStrategy(id, strategyFunction) {
     if (!formInputs.includes(id)) {
       console.error(`Your ID '${id}' was not found in the list of ID's to validate, please set them first`);
@@ -207,6 +227,22 @@ export const FFV = (function () {
     const newStrategy = { [id]: strategyFunction.bind(publicFacingApi) };
     formState.strategies = { ...formState.strategies, ...newStrategy };
     return this;
+  }
+
+  /**
+   * The last method that should be called  after setting strategies
+   *  for inputs or after using default strategies, it starts the validating
+   * process
+   * @memberof FastFormValidator
+   * @function validate
+   * @inner
+   * @return {Boolean} true if the all fields have valid input, false otherwise
+   */
+  function validate() {
+    const dirtyElements = captureElements();
+    listenToInputs(dirtyElements);
+    executeStrategies();
+    return getFormStatus();
   }
 
   function displayErrorsHere(htmlID) {
@@ -236,12 +272,37 @@ export const FFV = (function () {
     errorBlock.appendChild(ul);
     return this;
   }
-  function onTheseIDs(listOfIDs) {
-    formInputs = [...formInputs, ...listOfIDs.split(',')];
-    formInputs.forEach((inputId) => initializeInput(inputId));
-    setFormStatus(false);
-    return this;
-  }
+
+  /**
+   * A student
+   * FastFormValidator
+   *
+   *
+   * @typedef {Object} Student
+   * @property {number} id - Student ID
+   * @property {string} name - Student name
+   * @property {string|number} [age=''] - Student age (optional)
+   * @property {boolean} isActive - Student is active
+   */
+
+  /**
+   * used as FFV is a streamlined solution to validate input fields.
+   * @typedef {Object} FastFormValidator
+   *
+   * @property {Function}  onTheseIDs - a list of input field IDs to be
+   * validated.
+   *
+   * @property {Function}  onEmail - The ID of the email input field.
+   * @property {Function}  onPassword - The ID of the password input field.
+   * @property {Function}  onDateOfBirth - The ID of the date input field.
+   * @property {Function}  setStrategy - the ID of an input field and the respective function to validate that input.
+   * @property {Function}  onSubmitButton - The ID of the form's submit button.
+   * @property {Function}  displayErrorsHere - The ID of the HTML container
+   * that will contain the list of feedback Messages.
+   * @property {Function}  validate - starts the validating
+   * process.
+   *
+   */
   const publicFacingApi = {
     onTheseIDs,
     onEmail: defaults.email,
