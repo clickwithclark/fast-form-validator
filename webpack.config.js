@@ -9,8 +9,8 @@ module.exports = {
     library: {
       type: 'umd',
     },
-    // prevent error: `Uncaught ReferenceError: self is not define`
-    // globalObject: 'this',
+    // prevent error: `Uncaught ReferenceError: self is not defined`
+    globalObject: 'this',
   },
   mode: 'production',
 };
