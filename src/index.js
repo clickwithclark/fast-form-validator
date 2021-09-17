@@ -76,21 +76,21 @@ export const FFV = (function () {
   }
 
   defaults.email = function (id) {
-    setStrategy(id, defaultEmailStrategy);
+    setStrategyFor(id, defaultEmailStrategy);
     formState.strategies[`${id}Args`] = [...arguments];
     formState.strategies[id]();
     return this;
   };
 
   defaults.password = function (id, minLength = 6, maxLength = 15) {
-    setStrategy(id, defaultPasswordStrategy);
+    setStrategyFor(id, defaultPasswordStrategy);
     formState.strategies[`${id}Args`] = [...arguments].slice(1);
     formState.strategies[id]();
     return this;
   };
 
   defaults.dateOfBirth = function (id, age = 18) {
-    setStrategy(id, defaultDateOfBirthStrategy);
+    setStrategyFor(id, defaultDateOfBirthStrategy);
     formState.strategies[`${id}Args`] = [...arguments].slice(1);
     formState.strategies[id]();
     return this;
@@ -196,13 +196,13 @@ export const FFV = (function () {
   /**
    * Provide FastFormValidator with the ID of an input field and the respective function to validate that input field
    * @memberof FastFormValidator
-   * @function setStrategy
+   * @function setStrategyFor
    * @inner
    * @param  {String} id  ID of an input field
    * @param  {Function} strategyFunction  function to validate that input field
    * @return {FastFormValidator}  The FFV module
    */
-  function setStrategy(id, strategyFunction) {
+  function setStrategyFor(id, strategyFunction) {
     initializeInput(id);
     if (!formInputs.includes(id)) {
       console.error(`Your ID '${id}' was not found in the list of ID's to validate, please set them first`);
@@ -219,7 +219,7 @@ export const FFV = (function () {
     formState.strategies = { ...formState.strategies, ...newStrategy };
     return this;
   }
-  const feedback = {
+  const onSuccess = {
     hideFeedback,
     removeFeedback,
   };
@@ -317,7 +317,7 @@ export const FFV = (function () {
    * @property {Function}  onEmail - The ID of the email input field.
    * @property {Function}  onPassword - The ID of the password input field.
    * @property {Function}  onDateOfBirth - The ID of the date input field.
-   * @property {Function}  setStrategy - the ID of an input field and the respective function to validate that input.
+   * @property {Function}  setStrategyFor - the ID of an input field and the respective function to validate that input.
    * @property {Function}  onSubmitButton - The ID of the form's submit button.
    * @property {Function}  displayErrorsHere - The ID of the HTML container
    * that will contain the list of feedback Messages.
@@ -330,9 +330,9 @@ export const FFV = (function () {
     onPassword: defaults.password,
     onDateOfBirth: defaults.dateOfBirth,
     validate,
-    setStrategy,
+    setStrategyFor,
     onSubmitButton,
-    feedback,
+    onSuccess,
     displayErrorsHere,
   };
 

@@ -10,29 +10,33 @@
 
   <script defer src="../UMD/ffv.min.js"></script>
   <script type="module" defer>
-    FFV.onEmail('email')
+    function atLeastSix() {
+      if (!this.usernameValue) {
+        this.usernameError = '❌Username cannot be empty';
+      }
+  if (this.usernameValue.length < 6) {
+        this.usernameError = '❌Username must be at least 6 characters long';
+  }
+    }
+    function hooray() {
+      if (FFV.validate()) {
+        alert('Hooray! 😁 your form is validated!');
+        return;
+      }
+
+      // will not work!
+      // happy path only
+      // user 'unhappy path'feedback should be set in respective input stategies
+      alert('Please check your inputs, entry not valid😥');
+}
+
+FFV.onEmail('email')
   .onPassword('password', 4, 22)
   .onDateOfBirth('dob', 18)
-  .setStrategy('username', function () {
-    if (!this.usernameValue) {
-          this.usernameError = '❌Username cannot be empty';
-        }
-    if (this.usernameValue.length < 6) {
-          this.usernameError = '❌Username must be at least 6 characters long';
-    }
-  })
+  .setStrategyFor('username', atLeastSix)
   .displayErrorsHere('showErrors')
-  .feedback.removeFeedback()
-  .onSubmitButton('submitBtn', () => {
-        if (FFV.validate()) {
-          alert('Hooray! 😁 your form is validated!');
-          return;
-        }
-
-        // will not work happy path only
-        // user feedback should be set in respective input stategies
-        alert('Please check your inputs, entry not valid😥');
-  })
+  .onSuccess.removeFeedback()
+  .onSubmitButton('submitBtn', hooray)
   .validate();
       </script>
   <style type="">
