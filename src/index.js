@@ -140,7 +140,11 @@ export const FFV = (function () {
   function getFormStatus() {
     return formState.isValid;
   }
-
+  function handleFailure() {
+    if (formState.successStrategy) {
+      formState.failureStrategy();
+    }
+  }
   function executeStrategies() {
     if (hasMissingStrategies().length) {
       console.error(`Validation strategies have not been set for the following ID's: \n${hasMissingStrategies().join('\n')}`);
@@ -153,6 +157,7 @@ export const FFV = (function () {
     });
     displayErrorsHere(formState.feedbackElement);
     if (formHasErrors()) {
+      handleFailure();
       return setFormStatus(false);
     }
     handleSuccess();
@@ -215,41 +220,48 @@ export const FFV = (function () {
     return this;
   }
   const feedback = {
-    hidefeedback,
-    showFeedback,
-    displayFeedback,
+    hideFeedback,
     removeFeedback,
   };
-  function hidefeedback() {
-    const strategy = function () {
-      const errorBlock = document.getElementById(formState.feedbackElement);
-      errorBlock.style.visibility = 'hidden';
-    };
+  function hide() {
+    const errorBlock = document.getElementById(formState.feedbackElement);
+    errorBlock.style.visibility = 'hidden';
+  }
+  function show() {
+    const errorBlock = document.getElementById(formState.feedbackElement);
+    errorBlock.style.visibility = 'visible';
+  }
+  function display() {
+    const errorBlock = document.getElementById(formState.feedbackElement);
+    errorBlock.style.display = 'block';
+  }
+
+  function remove() {
+    const errorBlock = document.getElementById(formState.feedbackElement);
+    errorBlock.style.display = 'none';
+  }
+
+  function hideFeedback() {
+    const strategy = hide;
     formState.successStrategy = strategy.bind(publicFacingApi);
+    formState.failureStrategy = show.bind(publicFacingApi);
     return publicFacingApi;
   }
-  function showFeedback() {
-    const strategy = function () {
-      const errorBlock = document.getElementById(formState.feedbackElement);
-      errorBlock.style.visibility = 'visible';
-    };
-    formState.successStrategy = strategy.bind(publicFacingApi);
-    return publicFacingApi;
-  }
-  function displayFeedback() {
-    const strategy = function () {
-      const errorBlock = document.getElementById(formState.feedbackElement);
-      errorBlock.style.display = 'block';
-    };
-    formState.successStrategy = strategy.bind(publicFacingApi);
-    return publicFacingApi;
-  }
+
+  // function showFeedback() {
+  //   const strategy = show;
+  //   formState.successStrategy = strategy.bind(publicFacingApi);
+  //   return publicFacingApi;
+  // }
+  // function displayFeedback() {
+  //   const strategy = display;
+  //   formState.successStrategy = strategy.bind(publicFacingApi);
+  //   return publicFacingApi;
+  // }
   function removeFeedback() {
-    const strategy = function () {
-      const errorBlock = document.getElementById(formState.feedbackElement);
-      errorBlock.style.display = 'none';
-    };
+    const strategy = remove;
     formState.successStrategy = strategy.bind(publicFacingApi);
+    formState.failureStrategy = display.bind(publicFacingApi);
     return publicFacingApi;
   }
 
@@ -322,9 +334,9 @@ export const FFV = (function () {
     onSubmitButton,
     feedback,
     displayErrorsHere,
-    // get getstate() {
-    //   return formState;
-    // },
+    get getstate() {
+      return formState;
+    },
   };
 
   return publicFacingApi;
