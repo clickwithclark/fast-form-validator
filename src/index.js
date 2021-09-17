@@ -334,9 +334,9 @@ export const FFV = (function () {
     onSubmitButton,
     feedback,
     displayErrorsHere,
-    get getstate() {
-      return formState;
-    },
+    // get getstate() {
+    //   return formState;
+    // },
   };
 
   return publicFacingApi;
