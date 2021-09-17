@@ -13,7 +13,6 @@
     FFV.onEmail('email')
   .onPassword('password', 4, 22)
   .onDateOfBirth('dob', 18)
-  .onTheseIDs('username')
   .setStrategy('username', function () {
     if (!this.usernameValue) {
           this.usernameError = '❌Username cannot be empty';

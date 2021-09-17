@@ -2,7 +2,7 @@
 /* eslint-disable no-use-before-define */
 
 export const FFV = (function () {
-  let formInputs = [];
+  const formInputs = [];
   let formState = {};
   const defaults = {};
   function stoplistening() {
@@ -68,8 +68,6 @@ export const FFV = (function () {
   }
 
   defaults.email = function (id) {
-    formInputs.push(id);
-    initializeInput(id);
     setStrategy(id, defaultEmailStrategy);
     formState.strategies[`${id}Args`] = [...arguments];
     formState.strategies[id]();
@@ -77,8 +75,6 @@ export const FFV = (function () {
   };
 
   defaults.password = function (id, minLength = 6, maxLength = 15) {
-    formInputs.push(id);
-    initializeInput(id);
     setStrategy(id, defaultPasswordStrategy);
     formState.strategies[`${id}Args`] = [...arguments].slice(1);
     formState.strategies[id]();
@@ -86,8 +82,6 @@ export const FFV = (function () {
   };
 
   defaults.dateOfBirth = function (id, age = 18) {
-    formInputs.push(id);
-    initializeInput(id);
     setStrategy(id, defaultDateOfBirthStrategy);
     formState.strategies[`${id}Args`] = [...arguments].slice(1);
     formState.strategies[id]();
@@ -187,23 +181,6 @@ export const FFV = (function () {
   }
 
   /**
-   * Provide FastFormValidator with a list of IDs of the input fields
-   * to be validated
-   *
-   * @memberof FastFormValidator
-   * @function onTheseIDs
-   * @type {Function}
-   * @param  {String} listOfIDs A comma separated list of input ID's
-   * @return {FastFormValidator}  The FFV module
-   */
-  function onTheseIDs(listOfIDs) {
-    formInputs = [...formInputs, ...listOfIDs.split(',')];
-    formInputs.forEach((inputId) => initializeInput(inputId));
-    setFormStatus(false);
-    return this;
-  }
-
-  /**
    * Provide FastFormValidator with the ID of an input field and the respective function to validate that input field
    * @memberof FastFormValidator
    * @function setStrategy
@@ -213,6 +190,7 @@ export const FFV = (function () {
    * @return {FastFormValidator}  The FFV module
    */
   function setStrategy(id, strategyFunction) {
+    initializeInput(id);
     if (!formInputs.includes(id)) {
       console.error(`Your ID '${id}' was not found in the list of ID's to validate, please set them first`);
       return;
@@ -239,6 +217,7 @@ export const FFV = (function () {
    * @return {Boolean} true if the all fields have valid input, false otherwise
    */
   function validate() {
+    setFormStatus(false);
     const dirtyElements = captureElements();
     listenToInputs(dirtyElements);
     executeStrategies();
@@ -274,23 +253,8 @@ export const FFV = (function () {
   }
 
   /**
-   * A student
-   * FastFormValidator
-   *
-   *
-   * @typedef {Object} Student
-   * @property {number} id - Student ID
-   * @property {string} name - Student name
-   * @property {string|number} [age=''] - Student age (optional)
-   * @property {boolean} isActive - Student is active
-   */
-
-  /**
    * used as FFV is a streamlined solution to validate input fields.
    * @typedef {Object} FastFormValidator
-   *
-   * @property {Function}  onTheseIDs - a list of input field IDs to be
-   * validated.
    *
    * @property {Function}  onEmail - The ID of the email input field.
    * @property {Function}  onPassword - The ID of the password input field.
@@ -304,7 +268,6 @@ export const FFV = (function () {
    *
    */
   const publicFacingApi = {
-    onTheseIDs,
     onEmail: defaults.email,
     onPassword: defaults.password,
     onDateOfBirth: defaults.dateOfBirth,
@@ -317,6 +280,7 @@ export const FFV = (function () {
   return publicFacingApi;
 
   function initializeInput(id) {
+    formInputs.push(id);
     buildErrorList(id);
     initInputValues(id);
   }

@@ -4,46 +4,27 @@
 
 *   [FastFormValidator][1]
     *   [Properties][2]
-    *   [onTheseIDs][3]
+    *   [setStrategy][3]
         *   [Parameters][4]
-    *   [setStrategy][5]
-        *   [Parameters][6]
-    *   [validate][7]
-*   [Student][8]
-    *   [Properties][9]
+    *   [validate][5]
 
 ## FastFormValidator
 
 used as FFV is a streamlined solution to validate input fields.
 
-Type: [Object][10]
+Type: [Object][6]
 
 ### Properties
 
-*   `onTheseIDs` **[Function][11]** a list of input field IDs to be
-    validated.
-*   `onEmail` **[Function][11]** The ID of the email input field.
-*   `onPassword` **[Function][11]** The ID of the password input field.
-*   `onDateOfBirth` **[Function][11]** The ID of the date input field.
-*   `setStrategy` **[Function][11]** the ID of an input field and the respective function to validate that input.
-*   `onSubmitButton` **[Function][11]** The ID of the form's submit button.
-*   `displayErrorsHere` **[Function][11]** The ID of the HTML container
+*   `onEmail` **[Function][7]** The ID of the email input field.
+*   `onPassword` **[Function][7]** The ID of the password input field.
+*   `onDateOfBirth` **[Function][7]** The ID of the date input field.
+*   `setStrategy` **[Function][7]** the ID of an input field and the respective function to validate that input.
+*   `onSubmitButton` **[Function][7]** The ID of the form's submit button.
+*   `displayErrorsHere` **[Function][7]** The ID of the HTML container
     that will contain the list of feedback Messages.
-*   `validate` **[Function][11]** starts the validating
+*   `validate` **[Function][7]** starts the validating
     process.
-
-### onTheseIDs
-
-Provide FastFormValidator with a list of IDs of the input fields
-to be validated
-
-Type: [Function][11]
-
-#### Parameters
-
-*   `listOfIDs` **[String][12]** A comma separated list of input ID's
-
-Returns **[FastFormValidator][13]** The FFV module
 
 ### setStrategy
 
@@ -51,10 +32,10 @@ Provide FastFormValidator with the ID of an input field and the respective funct
 
 #### Parameters
 
-*   `id` **[String][12]** ID of an input field
-*   `strategyFunction` **[Function][11]** function to validate that input field
+*   `id` **[String][8]** ID of an input field
+*   `strategyFunction` **[Function][7]** function to validate that input field
 
-Returns **[FastFormValidator][13]** The FFV module
+Returns **[FastFormValidator][9]** The FFV module
 
 ### validate
 
@@ -62,48 +43,24 @@ The last method that should be called  after setting strategies
 for inputs or after using default strategies, it starts the validating
 process
 
-Returns **[Boolean][14]** true if the all fields have valid input, false otherwise
-
-## Student
-
-A student
-FastFormValidator
-
-Type: [Object][10]
-
-### Properties
-
-*   `id` **[number][15]** Student ID
-*   `name` **[string][12]** Student name
-*   `age` **([string][12] | [number][15])?** Student age (optional)
-*   `isActive` **[boolean][14]** Student is active
+Returns **[Boolean][10]** true if the all fields have valid input, false otherwise
 
 [1]: #fastformvalidator
 
 [2]: #properties
 
-[3]: #ontheseids
+[3]: #setstrategy
 
 [4]: #parameters
 
-[5]: #setstrategy
+[5]: #validate
 
-[6]: #parameters-1
+[6]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
-[7]: #validate
+[7]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function
 
-[8]: #student
+[8]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
 
-[9]: #properties-1
+[9]: #fastformvalidator
 
-[10]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
-
-[11]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function
-
-[12]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
-
-[13]: #fastformvalidator
-
-[14]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
-
-[15]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
+[10]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
