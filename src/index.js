@@ -22,9 +22,9 @@ export const FFV = (function () {
   function handleFormSubmit(event) {
     event.preventDefault();
     if (getFormStatus()) {
-      stoplistening();
       this.removeEventListener('click', handleFormSubmit);
       formState.submitAction();
+      stoplistening();
     }
   }
 
@@ -334,9 +334,6 @@ export const FFV = (function () {
     onSubmitButton,
     feedback,
     displayErrorsHere,
-    // get getstate() {
-    //   return formState;
-    // },
   };
 
   return publicFacingApi;
