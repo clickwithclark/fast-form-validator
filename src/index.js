@@ -5,6 +5,14 @@ export const FFV = (function () {
   const formInputs = [];
   let formState = {};
   const defaults = {};
+  // formState.successStrategy = undefined;
+
+  function handleSuccess() {
+    if (formState.successStrategy) {
+      formState.successStrategy();
+    }
+  }
+
   function stoplistening() {
     const cleanElements = captureElements();
     cleanElements.forEach((element) => {
@@ -144,10 +152,10 @@ export const FFV = (function () {
       executeStrategyOf(inputId);
     });
     displayErrorsHere(formState.feedbackElement);
-
     if (formHasErrors()) {
       return setFormStatus(false);
     }
+    handleSuccess();
     return setFormStatus(true);
   }
 
@@ -205,6 +213,44 @@ export const FFV = (function () {
     const newStrategy = { [id]: strategyFunction.bind(publicFacingApi) };
     formState.strategies = { ...formState.strategies, ...newStrategy };
     return this;
+  }
+  const feedback = {
+    hidefeedback,
+    showFeedback,
+    displayFeedback,
+    removeFeedback,
+  };
+  function hidefeedback() {
+    const strategy = function () {
+      const errorBlock = document.getElementById(formState.feedbackElement);
+      errorBlock.style.visibility = 'hidden';
+    };
+    formState.successStrategy = strategy.bind(publicFacingApi);
+    return publicFacingApi;
+  }
+  function showFeedback() {
+    const strategy = function () {
+      const errorBlock = document.getElementById(formState.feedbackElement);
+      errorBlock.style.visibility = 'visible';
+    };
+    formState.successStrategy = strategy.bind(publicFacingApi);
+    return publicFacingApi;
+  }
+  function displayFeedback() {
+    const strategy = function () {
+      const errorBlock = document.getElementById(formState.feedbackElement);
+      errorBlock.style.display = 'block';
+    };
+    formState.successStrategy = strategy.bind(publicFacingApi);
+    return publicFacingApi;
+  }
+  function removeFeedback() {
+    const strategy = function () {
+      const errorBlock = document.getElementById(formState.feedbackElement);
+      errorBlock.style.display = 'none';
+    };
+    formState.successStrategy = strategy.bind(publicFacingApi);
+    return publicFacingApi;
   }
 
   /**
@@ -274,7 +320,11 @@ export const FFV = (function () {
     validate,
     setStrategy,
     onSubmitButton,
+    feedback,
     displayErrorsHere,
+    // get getstate() {
+    //   return formState;
+    // },
   };
 
   return publicFacingApi;
