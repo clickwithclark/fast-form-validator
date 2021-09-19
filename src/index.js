@@ -436,6 +436,7 @@ FFV.onEmail('email')
   .onSuccess.removeFeedback()
   .onSubmitButton('submitBtn', hooray)
   .validate();
+  
     </script>
 </head>
 <body>

@@ -8,7 +8,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 
-  <script defer src="../UMD/ffv.min.js"></script>
+  <script defer src="https://unpkg.com/fast-form-validator@latest/UMD/ffv.min.js"></script>
   <script type="module" defer>
     function atLeastSix() {
       if (!this.usernameValue) {
@@ -26,7 +26,7 @@
 
       // will not work!
       // happy path only
-      // user 'unhappy path'feedback should be set in respective input stategies
+      // user 'unhappy path'feedback should be set in respective input strategies
       alert('Please check your inputs, entry not valid😥');
 }
 

@@ -51,7 +51,7 @@ Type: [Object][19]
 <html lang="en">
 <head>
 <title>Your Form</title>
-<script defer type="module" src="UMD/ffv.min.js"></script>
+<script defer type="module" src="https://unpkg.com/fast-form-validator@latest/UMD/ffv.min.js"></script>
 <script>
 
 FFV.onEmail('email')
@@ -62,6 +62,7 @@ FFV.onEmail('email')
 .onSuccess.removeFeedback()
 .onSubmitButton('submitBtn', hooray)
 .validate();
+
 </script>
 </head>
 <body>
@@ -141,12 +142,12 @@ one per invalid condition, here is a one at a time example:
 
 ```js
 function atLeastSix() {
-if (!this.usernameValue) {
-this.usernameError = '❌ username can not be empty';
-}
-if (this.usernameValue && this.usernameValue.length < 6) {
-this.usernameError = '❌Username must be at least 6 characters long';
-}
+    if (!this.usernameValue) {
+        this.usernameError = '❌ username can not be empty';
+    }
+    if (this.usernameValue && this.usernameValue.length < 6) {
+        this.usernameError = '❌Username must be at least 6 characters long';
+    }
 }
 //Usage: passing only the function reference
 FFV.setStrategyFor('username', atLeastSix);
@@ -198,6 +199,8 @@ for inputs or after using default strategies, it starts the validating
 process by listening to input fields.
 
 Returns **[Boolean][24]** true if the all fields have valid input, false otherwise
+
+[Live Example](https://codepen.io/clickwithclark/full/zYzWeyK)
 
 [1]: #fastformvalidator
 
