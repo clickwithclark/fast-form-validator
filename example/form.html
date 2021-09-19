@@ -14,7 +14,7 @@
       if (!this.usernameValue) {
         this.usernameError = '❌Username cannot be empty';
       }
-  if (this.usernameValue.length < 6) {
+  if (this.usernameValue && this.usernameValue.length < 6) {
         this.usernameError = '❌Username must be at least 6 characters long';
   }
     }
@@ -30,10 +30,10 @@
       alert('Please check your inputs, entry not valid😥');
 }
 
-FFV.onEmail('email')
+FFV.setStrategyFor('username', atLeastSix)
+  .onEmail('email')
   .onPassword('password', 4, 22)
   .onDateOfBirth('dob', 18)
-  .setStrategyFor('username', atLeastSix)
   .displayErrorsHere('showErrors')
   .onSuccess.removeFeedback()
   .onSubmitButton('submitBtn', hooray)
@@ -41,15 +41,27 @@ FFV.onEmail('email')
       </script>
   <style type="">
     body{
-  background: linear-gradient(270deg, #222b2c, #2a3c39, #354c43, #475d4a, #5f6d4f, #7d7b54, #9e885d, #c2936d);
+  
+  background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ),url("https://source.unsplash.com/1920x1080/?documents") no-repeat center center fixed; 
+ color: white;
+  background-size: cover;}
+
+ .img-fluid{
+  max-width: 15%;
+    height: auto;
+    display: block;
+ }
+  
  }
   </style>
   <title>Form</title>
 </head>
 
 <body>
+
   <div class="container mt-5" style=" max-width: 720px;">
-    <form>
+    <form class="form">
+      <img src="https://i.ibb.co/Pwqr8wG/ffv-logo.png" class="img-fluid" alt="FFV logo">
       <div class="mb-3">
         <label for="username" class="form-label">Username</label>
         <input type="text" class="form-control" id="username">
