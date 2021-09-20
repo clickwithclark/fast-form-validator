@@ -73,6 +73,9 @@ FFV.onEmail('email')
 
 
 //Usage on Node, just require the module
+
+npm i fast-form-validator
+
 const { FFV } = require('fast-form-validator');
 ```
 
