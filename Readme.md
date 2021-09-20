@@ -1,7 +1,7 @@
 
 
 ![Fast Form Validator Logo](https://i.ibb.co/Pwqr8wG/ffv-logo.png)  
-![Twitter Follow](https://img.shields.io/twitter/follow/clickwithclark?style=social) ![GitHub repo size](https://img.shields.io/github/repo-size/clickwithclark/fast-form-validator?style=flat-square) ![npm](https://img.shields.io/npm/v/fast-form-validator?style=flat-square)
+![Twitter Follow](https://img.shields.io/twitter/follow/clickwithclark?style=social) ![GitHub file size in bytes](https://img.shields.io/github/size/clickwithclark/fast-form-validator/UMD/ffv.min.js?style=flat-square) ![npm](https://img.shields.io/npm/v/fast-form-validator?style=flat-square)
 ### Table of Contents
 
 *   [FastFormValidator][1]
@@ -92,9 +92,9 @@ Returns **[FastFormValidator][22]**
 ### onPassword
 
 Validates password input fields with a minimum and maximum character limit
-based on the input field Id
-it also enforces at least One upper case ,one lowercase and one digit.
-default character limits are between 6 and 16 characters
+based on the input field ID.
+It enforces at least One upper case ,one lowercase and one digit. 
+Default character limits are between 6 and 15 characters
 
 #### Parameters
 
@@ -107,7 +107,7 @@ Returns **[FastFormValidator][22]**
 ### onDateOfBirth
 
 Validates date input fields with a minimum age limit based on the input
-field Id
+field ID
 
 #### Parameters
 
@@ -122,10 +122,11 @@ Provide FastFormValidator with the ID of an input field and the respective
 function to validate that input field
 
 When an ID is passed, the ID is used as a prefix to create a getter
-for the current input value and a setter using camelCase
-to create a list of error messages to display to the user on invalid input
+for the current input value and a setter to set the error messages using the ID 
+as a prefix with camelCase (e.g. someIDValue & someIDError) to get the value for
+assessment and to set the error messages to display to the user on invalid input
 
-prefixValue & prefixError
+
 
 Example:
 
@@ -141,8 +142,8 @@ Example:
  FFV.usernameError = "username must be..." 
 ```
 
-Error messages are stored in an array and can be displayed all at one or
-one per invalid condition, here is a one at a time example:
+Error messages are stored in an array and can be displayed all at once or
+once per invalid condition, here is a once per invalid entry example:
 
 ```js
 function atLeastSix() {
@@ -166,7 +167,7 @@ FFV.setStrategyFor('username', atLeastSix);
 Returns **[FastFormValidator][22]** 
 
 ### onSubmitButton
-Pass a function to be executed when there are no input errors and the user clicks submit, a **successful** submission will immediately stop the submit button from receiving input, it executes the desired function, then removes all event listeners for all aformention input fields. you can read more on why to remove event listeners [here](https://eloquentjavascript.net/15_event.html) though not as consequentional in modern browsers.
+Pass a function to be executed when there are no input errors and the user clicks submit. A **successful** submission will immediately stop the submit button from receiving input, execute the desired function, then remove all event listeners for all aformention input fields and even the submit button. You can read more on why you would want to remove event listeners [here](https://eloquentjavascript.net/15_event.html) though not as consequential in modern browsers.
 
 #### Parameters
 
@@ -179,7 +180,7 @@ Returns **[FastFormValidator][22]**
 
 #### Parameters
 
-*   `htmlID` **type** ID of the HTML container element that will display the error messages
+*   `htmlID` **[String][21]** ID of the HTML container element that will display the error messages
 
 Returns **[FastFormValidator][22]** 
 
