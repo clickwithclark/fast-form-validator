@@ -102,7 +102,7 @@ export const FFV = (function () {
   function handleFormSubmit(event) {
     event.preventDefault();
     if (getFormStatus()) {
-      FFV.removeEventListener('click', handleFormSubmit);
+      this.removeEventListener('click', handleFormSubmit);
       formState.submitAction();
       stoplistening();
     }
@@ -436,7 +436,7 @@ FFV.onEmail('email')
   .onSuccess.removeFeedback()
   .onSubmitButton('submitBtn', hooray)
   .validate();
-  
+
     </script>
 </head>
 <body>
