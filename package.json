@@ -10,7 +10,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "docs": "npx documentation build src/** -f md > README.md",
+    "docs": "npx documentation build src/** -f md > README[sample].md",
     "html": "npx documentation build src/** -f html -o docs",
     "release": "standard-version && git push --follow-tags origin master && npm publish"
   },

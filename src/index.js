@@ -341,6 +341,8 @@ export const FFV = (function () {
   const onSuccess = {
     hideFeedback,
     removeFeedback,
+    addClass,
+    removeClass,
   };
   function hide() {
     const errorBlock = document.getElementById(formState.feedbackElement);
@@ -385,6 +387,42 @@ export const FFV = (function () {
     const strategy = remove;
     formState.successStrategy = strategy.bind(FFV);
     formState.failureStrategy = display.bind(FFV);
+    return FFV;
+  }
+
+  function addClassName() {
+    const errorBlock = document.getElementById(formState.feedbackElement);
+    errorBlock.classList.add(formState.feedbackClassName);
+  }
+  function removeClassName() {
+    const errorBlock = document.getElementById(formState.feedbackElement);
+    errorBlock.classList.remove(formState.feedbackClassName);
+  }
+
+  /**
+   * Adds a classname to the element that contains the feedback
+   * messages on successful validation
+   * @memberof FastFormValidator
+   * @function onSuccess.addClass
+   * @return {FastFormValidator}
+   */
+  function addClass(className) {
+    formState.feedbackClassName = className;
+    formState.successStrategy = addClassName.bind(FFV);
+    formState.failureStrategy = removeClassName.bind(FFV);
+    return FFV;
+  }
+  /**
+   * Removes a classname to the element that contains the feedback
+   * messages on successful validation
+   * @memberof FastFormValidator
+   * @function onSuccess.removeClass
+   * @return {FastFormValidator}
+   */
+  function removeClass(className) {
+    formState.feedbackClassName = className;
+    formState.successStrategy = removeClassName.bind(FFV);
+    formState.failureStrategy = addClassName.bind(FFV);
     return FFV;
   }
 
@@ -460,5 +498,8 @@ const { FFV } = require('fast-form-validator');
     onSubmitButton,
     onSuccess,
     displayErrorsHere,
+    showState: function functionName() {
+      return formState;
+    },
   };
 })();

@@ -35,8 +35,8 @@ FFV.setStrategyFor('username', atLeastSix)
   .onPassword('password', 4, 22)
   .onDateOfBirth('dob', 18)
   .displayErrorsHere('showErrors')
-  .onSuccess.removeFeedback()
   .onSubmitButton('submitBtn', hooray)
+  .onSuccess.removeClass('alert-dark')
   .validate();
       </script>
   <style type="">

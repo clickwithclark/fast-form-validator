@@ -21,6 +21,8 @@
         *   [Parameters][15]
     *   [onSuccess.hideFeedback][16]
     *   [onSuccess.removeFeedback][17]
+    *   [onSuccess.addClass][25]
+    *   [onSuccess.removeClass][26]
     *   [validate][18]
 
 ## FastFormValidator
@@ -198,6 +200,20 @@ css display property
 
 Returns **[FastFormValidator][22]** 
 
+### onSuccess.addClass
+
+Adds a classname to the element that contains the feedback
+messages on successful validation
+
+Returns **[FastFormValidator][22]** 
+
+### onSuccess.removeClass
+
+Removes a classname to the element that contains the feedback
+messages on successful validation
+
+Returns **[FastFormValidator][22]** 
+
 ### validate
 
 The last method that should be called  after setting strategies
@@ -261,3 +277,7 @@ to make this module, learning the revealing module pattern as well as strategy p
 [23]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
 
 [24]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
+
+[25]: #onsuccessaddclass
+
+[26]: #onsuccessremoveclass
