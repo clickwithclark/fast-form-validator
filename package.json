@@ -1,6 +1,6 @@
 {
   "name": "fast-form-validator",
-  "version": "1.1.12",
+  "version": "1.1.13",
   "description": "",
   "main": "index.js",
   "exports": {
@@ -12,7 +12,7 @@
     "build": "webpack",
     "docs": "npx documentation build src/** -f md > README[sample].md",
     "html": "npx documentation build src/** -f html -o docs",
-    "release": "standard-version && git push --follow-tags origin master && npm publish"
+    "release": "standard-version && git push --follow-tags origin main && npm publish"
   },
   "repository": {
     "type": "git",
