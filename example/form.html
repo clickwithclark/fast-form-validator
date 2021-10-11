@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+  <script defer src="../UMD/ffv.min.js"></script>
+  <script type="module" defer>
+    function atLeastSix() {
+  if (!this.usernameValue) {
+        this.usernameError = '❌Username cannot be empty';
+  }
+  if (this.usernameValue && this.usernameValue.length < 6) {
+        this.usernameError = '❌Username must be at least 6 characters long';
+  }
+}
+function hooray() {
+  if (FFV.validate()) {
+        alert('Hooray! 😁 your form is validated!');
+        return;
+  }
+
+  // will not work!
+  // happy path only
+  // user 'unhappy path'feedback should be set in respective input strategies
+  alert('Please check your inputs, entry not valid😥');
+}
+
+FFV.setStrategyFor('username', atLeastSix)
+  .onEmail('email')
+  .onPassword('password', 4, 22)
+  .onDateOfBirth('dob', 18)
+  .displayErrorsHere('showErrors')
+  .onSubmitButton('submitBtn', hooray)
+  // .onSuccess.hideFeedback()
+  .onSuccess.removeClass('alert-dark')
+  .validate();
+      </script>
+  <style type="">
+    body{
+  
+  background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ),url("https://source.unsplash.com/1920x1080/?documents") no-repeat center center fixed; 
+ color: white;
+  background-size: cover;}
+
+ .img-fluid{
+  max-width: 15%;
+    height: auto;
+    display: block;
+ }
+  
+  </style>
+  <title>Form</title>
+</head>
+
+<body>
+
+  <div class="container mt-5" style=" max-width: 720px;">
+    <form class="form">
+      <img src="https://i.ibb.co/Pwqr8wG/ffv-logo.png" class="img-fluid" alt="FFV logo">
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" class="form-control" id="username">
+
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password">
+        </div>
+
+        <div class="mb-3">
+          <label for="dob" class="form-label">Date of Birth</label>
+          <input type="date" class="form-control" id="dob" value="2021-09-11">
+        </div>
+        <button id="submitBtn" type="submit" class="btn btn-primary">Submit</button>
+        <div id="showErrors" class=" alert alert-dark mt-2">
+
+        </div>
+    </form>
+  </div>
+</body>
+
+</html>

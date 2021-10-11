@@ -1,0 +1,52 @@
+{
+  "name": "fast-form-validator",
+  "version": "1.1.11",
+  "description": "",
+  "main": "index.js",
+  "exports": {
+    "import": "./UMD/ffv.min.js",
+    "require": "./UMD/ffv.min.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "docs": "npx documentation build src/** -f md > README[sample].md",
+    "html": "npx documentation build src/** -f html -o docs",
+    "release": "standard-version && git push --follow-tags origin master && npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:clickwithclark/fast-form-validator.git"
+  },
+  "keywords": [
+    "form validator",
+    "fast form validator",
+    "validate input"
+  ],
+  "author": "clickwithclark",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "eslint": "^7.21.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-clickwithclark": "^1.1.8",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-html": "^6.1.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "npm-check-updates": "^11.1.10",
+    "prettier": "^2.2.1",
+    "standard-version": "^9.3.1",
+    "webpack": "^5.52.1",
+    "webpack-cli": "^4.8.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "clickwithclark"
+    ]
+  }
+}
