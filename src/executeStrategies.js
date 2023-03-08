@@ -8,7 +8,11 @@ import { formHasErrors } from './formHasErrors';
 
 export function executeStrategies() {
   if (hasMissingStrategies().length) {
-    console.error(`Validation strategies have not been set for the following ID's: \n${hasMissingStrategies().join('\n')}`);
+    console.error(
+      `Validation strategies have not been set for the following ID's: \n${hasMissingStrategies().join(
+        '\n'
+      )}`
+    );
     return;
   }
 

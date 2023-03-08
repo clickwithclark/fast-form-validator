@@ -1,7 +1,14 @@
 /* eslint-disable prefer-rest-params */
 /* eslint-disable no-use-before-define */
 
-import { hide, show, remove, display, addClassName, removeClassName } from './handleFeedback';
+import {
+  hide,
+  show,
+  remove,
+  display,
+  addClassName,
+  removeClassName,
+} from './handleFeedback';
 import { initializeInput } from './initializeInput';
 import { getDefaults, getFormInputs, getFormState } from './stateManagement.js';
 import { displayErrorsHere } from './displayErrorsHere.js';
@@ -62,7 +69,9 @@ getFormInputs().dateOfBirth = function (id) {
 function setStrategyFor(id, strategyFunction) {
   initializeInput(id, FFV);
   if (!getFormInputs().includes(id)) {
-    console.error(`Your ID '${id}' was not found in the list of ID's to validate, please set them first`);
+    console.error(
+      `Your ID '${id}' was not found in the list of ID's to validate, please set them first`
+    );
     return;
   }
   Object.defineProperty(FFV, `${id}Error`, {

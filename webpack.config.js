@@ -13,5 +13,7 @@ module.exports = {
     globalObject: 'this',
   },
   mode: 'production',
+  // mode: 'development',
   watch: true,
+  // devtool:'hidden-cheap-module-source-map'
 };
