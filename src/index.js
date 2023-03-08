@@ -25,12 +25,12 @@ import { validate } from './validate.js';
  * @param  {String} id email input ID
  * @return {FastFormValidator}
  */
-getDefaults().email = function (id) {
+function onEmail(id) {
   setStrategyFor(id, defaultEmailStrategy);
   getFormState().strategies[`${id}Args`] = [...arguments];
   getFormState().strategies[id]();
   return FFV;
-};
+}
 /**
  * Validates password input fields with a minimum and maximum character limit
  * based on the input field Id
@@ -43,12 +43,12 @@ getDefaults().email = function (id) {
  * @param  {Number} maxLength Max password character length
  * @return {FastFormValidator}
  */
-getFormInputs().password = function (id) {
+function onPassword(id) {
   setStrategyFor(id, defaultPasswordStrategy);
   getFormState().strategies[`${id}Args`] = [...arguments].slice(1);
   getFormState().strategies[id]();
   return FFV;
-};
+}
 
 /**
  * Validates date input fields with a minimum age limit based on the input
@@ -59,12 +59,12 @@ getFormInputs().password = function (id) {
  * @param  {Number} age Minimum age allowed checked against today's date
  * @return {FastFormValidator}
  */
-getFormInputs().dateOfBirth = function (id) {
+function onDateOfBirth(id) {
   setStrategyFor(id, defaultDateOfBirthStrategy);
   getFormState().strategies[`${id}Args`] = [...arguments].slice(1);
   getFormState().strategies[id]();
   return FFV;
-};
+}
 
 function setStrategyFor(id, strategyFunction) {
   initializeInput(id, FFV);
@@ -148,15 +148,15 @@ function removeClass(className) {
 
 export const FFV = (function () {
   return {
-    onEmail: getFormInputs().email,
-    onPassword: getFormInputs().password,
-    onDateOfBirth: getFormInputs().dateOfBirth,
+    onEmail,
+    onPassword,
+    onDateOfBirth,
     validate,
     setStrategyFor,
     onSubmitButton,
     onSuccess,
     displayErrorsHere,
-    showState: function functionName() {
+    showState() {
       return getFormState();
     },
   };
