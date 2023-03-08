@@ -28,7 +28,6 @@ import { validate } from './validate.js';
 function onEmail(id) {
   setStrategyFor(id, defaultEmailStrategy);
   getFormState().strategies[`${id}Args`] = [...arguments];
-  getFormState().strategies[id]();
   return FFV;
 }
 /**
@@ -45,8 +44,7 @@ function onEmail(id) {
  */
 function onPassword(id) {
   setStrategyFor(id, defaultPasswordStrategy);
-  getFormState().strategies[`${id}Args`] = [...arguments].slice(1);
-  getFormState().strategies[id]();
+  getFormState().strategies[`${id}Args`] = [...arguments];
   return FFV;
 }
 
@@ -61,8 +59,7 @@ function onPassword(id) {
  */
 function onDateOfBirth(id) {
   setStrategyFor(id, defaultDateOfBirthStrategy);
-  getFormState().strategies[`${id}Args`] = [...arguments].slice(1);
-  getFormState().strategies[id]();
+  getFormState().strategies[`${id}Args`] = [...arguments];
   return FFV;
 }
 
@@ -156,8 +153,8 @@ export const FFV = (function () {
     onSubmitButton,
     onSuccess,
     displayErrorsHere,
-    showState() {
-      return getFormState();
+    troubleshoot() {
+      return { state: getFormState(), instance: this };
     },
   };
 })();

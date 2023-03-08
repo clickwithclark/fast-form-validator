@@ -1,4 +1,4 @@
-export function defaultPasswordStrategy(min = 6, max = 15) {
+export function defaultPasswordStrategy(id, min = 6, max = 15) {
   const passwordErrorMessage = `❌Password must contain:\n\t One uppercase letter\n\t One lowercase letter\n\t One digit\n\t Between ${min} to ${max} characters long`;
 
   const validPasswordRegex = new RegExp(
@@ -6,13 +6,13 @@ export function defaultPasswordStrategy(min = 6, max = 15) {
     'i'
   );
 
-  if (!this.passwordValue) {
-    this.passwordError = '❌Password cannot be empty';
+  if (!this[`${id}Value`]) {
+    this[`${id}Error`] = '❌Password cannot be empty';
   }
-  if (this.passwordValue && !validPasswordRegex.test(this.passwordValue)) {
-    this.passwordError = passwordErrorMessage;
+  if (this[`${id}Value`] && !validPasswordRegex.test(this[`${id}Value`])) {
+    this[`${id}Error`] = passwordErrorMessage;
   }
-  if (this.passwordValue.length > max) {
-    this.passwordError = passwordErrorMessage;
+  if (this[`${id}Value`].length > max) {
+    this[`${id}Error`] = passwordErrorMessage;
   }
 }
