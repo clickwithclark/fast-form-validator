@@ -9,7 +9,7 @@ import { listenToInputs } from './listenToInputs';
  * process by listening to input fields.
  * @memberof FastFormValidator
  * @function validate
- * @return {Boolean} true if the all fields have valid input, false otherwise
+ * @return {Boolean} true if the all fields have valid input
  */
 export function validate() {
   setFormStatus(false);

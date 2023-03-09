@@ -6,6 +6,12 @@ import { displayErrorsHere } from './displayErrorsHere';
 import { executeStrategyOf } from './executeStrategyOf';
 import { formHasErrors } from './formHasErrors';
 
+/**
+ * Calls the evaluation function associated with each corresponding
+ * input id one after the other
+ * @function executeStrategies
+ * @return {Void} Nothing is returned
+ */
 export function executeStrategies() {
   if (hasMissingStrategies().length) {
     console.error(

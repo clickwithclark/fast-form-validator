@@ -9,7 +9,7 @@ import { getFormInputs, getFormState } from './stateManagement.js';
 export function displayErrorsHere(htmlID) {
   getFormState().feedbackElement = htmlID;
   const errorBlock = document.getElementById(htmlID);
-  errorBlock.style.wordWrap = 'break-work';
+  errorBlock.style.wordWrap = 'break-word';
   errorBlock.style.whiteSpace = 'pre-wrap';
 
   if (!errorBlock) {
