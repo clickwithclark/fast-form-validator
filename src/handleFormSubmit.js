@@ -2,10 +2,7 @@ import { getFormStatus } from './formStatus';
 import { getFormState } from './stateManagement.js';
 import { stoplistening } from './stoplistening';
 
-/**
- * Input event triggered on input fields
- * @typedef {Object} InputEvent
- */
+
 
 /**
  * If all fields are successfully validated

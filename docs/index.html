@@ -1,0 +1,2605 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset='utf-8'>
+  <title>fast-form-validator 1.1.14 | Documentation</title>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <link href='assets/bass.css' rel='stylesheet'>
+  <link href='assets/style.css' rel='stylesheet'>
+  <link href='assets/github.css' rel='stylesheet'>
+  <link href='assets/split.css' rel='stylesheet'>
+</head>
+<body class='documentation m0'>
+    <div class='flex'>
+      <div id='split-left' class='overflow-auto fs0 height-viewport-100'>
+        <div class='py1 px2'>
+          <h3 class='mb0 no-anchor'>fast-form-validator</h3>
+          <div class='mb1'><code>1.1.14</code></div>
+          <input
+            placeholder='Filter'
+            id='filter-input'
+            class='col12 block input'
+            spellcheck='false'
+            autocapitalize='off'
+            autocorrect='off'
+            type='text' />
+          <div id='toc'>
+            <ul class='list-reset h5 py1-ul'>
+              
+                
+                <li><a
+                  href='#argumentsfor'
+                  class="">
+                  argumentsFor
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#builderrorlist'
+                  class="">
+                  buildErrorList
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#captureelements'
+                  class="">
+                  captureElements
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#defaultdateofbirthstrategy'
+                  class="">
+                  defaultDateOfBirthStrategy
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#defaultemailstrategy'
+                  class="">
+                  defaultEmailStrategy
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#defaultpasswordstrategy'
+                  class="">
+                  defaultPasswordStrategy
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#displayerrorshere'
+                  class="">
+                  displayErrorsHere
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#onemail'
+                  class="">
+                  onEmail
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#onpassword'
+                  class="">
+                  onPassword
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#ondateofbirth'
+                  class="">
+                  onDateOfBirth
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#onsuccesshidefeedback'
+                  class="">
+                  onSuccess.hideFeedback
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#onsuccessremovefeedback'
+                  class="">
+                  onSuccess.removeFeedback
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#onsuccessaddclass'
+                  class="">
+                  onSuccess.addClass
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#onsuccessremoveclass'
+                  class="">
+                  onSuccess.removeClass
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#onsubmitbutton'
+                  class="">
+                  onSubmitButton
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#validate'
+                  class="">
+                  validate
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#evaluateinput'
+                  class="">
+                  evaluateInput
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#executestrategies'
+                  class="">
+                  executeStrategies
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#executestrategyof'
+                  class="">
+                  executeStrategyOf
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#formhaserrors'
+                  class="">
+                  formHasErrors
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#setformstatus'
+                  class="">
+                  setFormStatus
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#getformstatus'
+                  class="">
+                  getFormStatus
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#generateaccessors'
+                  class="">
+                  generateAccessors
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#handlefailure'
+                  class="">
+                  handleFailure
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#handlesuccess'
+                  class="">
+                  handleSuccess
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#handleformsubmit'
+                  class="">
+                  handleFormSubmit
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#hasmissingstrategies'
+                  class="">
+                  hasMissingStrategies
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#initializeinput'
+                  class="">
+                  initializeInput
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#listentoinputs'
+                  class="">
+                  listenToInputs
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#inputevent'
+                  class="">
+                  InputEvent
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#saveinput'
+                  class="">
+                  saveInput
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#stoplistening'
+                  class="">
+                  stoplistening
+                  
+                </a>
+                
+                </li>
+              
+            </ul>
+          </div>
+          <div class='mt1 h6 quiet'>
+            <a href='https://documentation.js.org/reading-documentation.html'>Need help reading this?</a>
+          </div>
+        </div>
+      </div>
+      <div id='split-right' class='relative overflow-auto height-viewport-100'>
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='argumentsfor'>
+      argumentsFor
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Returns the arguments for the strategy function associated with a
+given id</p>
+
+    <div class='pre p1 fill-light mt0'>argumentsFor(id: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>id</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code>
+	    ID of input field
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></code>:
+        Array of arguments
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='builderrorlist'>
+      buildErrorList
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Creates a property in the FFV instance to contain the error(s)
+generated from unsuccessful validation attempts from a given
+input id</p>
+
+    <div class='pre p1 fill-light mt0'>buildErrorList(id: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>): Void</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>id</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code>
+	    ID of input field
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>Void</code>:
+        Nothing is returned
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='captureelements'>
+      captureElements
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Iterate over all form input ids to generate an array
+of elements based on them</p>
+
+    <div class='pre p1 fill-light mt0'>captureElements(): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></code>:
+        An Array of form input HTML elements
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='defaultdateofbirthstrategy'>
+      defaultDateOfBirthStrategy
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Default function used to evaluate date input fields that are used
+to capture date of birth</p>
+
+    <div class='pre p1 fill-light mt0'>defaultDateOfBirthStrategy(id: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>, minAge: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>): Void</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>id</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code>
+	    ID of input field
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>minAge</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>
+            = <code>18</code>)</code>
+	    Minimum age required to submit the form
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>Void</code>:
+        Nothing is returned
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='defaultemailstrategy'>
+      defaultEmailStrategy
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Default function used to evaluate email input fields</p>
+
+    <div class='pre p1 fill-light mt0'>defaultEmailStrategy(id: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>): Void</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>id</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code>
+	    ID of input field
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>Void</code>:
+        Nothing is returned
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='defaultpasswordstrategy'>
+      defaultPasswordStrategy
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Default function used to evaluate password input fields</p>
+
+    <div class='pre p1 fill-light mt0'>defaultPasswordStrategy(id: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>, min: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>, max: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>): Void</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>id</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code>
+	    ID of input field
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>min</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>
+            = <code>6</code>)</code>
+	    minimum character length
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>max</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>
+            = <code>15</code>)</code>
+	    maximum character length
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>Void</code>:
+        Nothing is returned
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='displayerrorshere'>
+      displayErrorsHere
+    </h3>
+    
+    
+  </div>
+  
+
+  
+    <div class='pre p1 fill-light mt0'>displayErrorsHere(htmlID: type): FastFormValidator</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>htmlID</span> <code class='quiet'>(type)</code>
+	    ID of the HTML container element that will display the error messages
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>FastFormValidator</code>:
+        
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='onemail'>
+      onEmail
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Validates email input fields based on the input field ID</p>
+
+    <div class='pre p1 fill-light mt0'>onEmail(id: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>): FastFormValidator</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>id</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code>
+	    email input ID
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>FastFormValidator</code>:
+        
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='onpassword'>
+      onPassword
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Validates password input fields with a minimum and maximum character limit
+based on the input field Id
+it also enforces at least One upper case ,one lowercase and one digit.
+default character limits are between 6 and 16 characters</p>
+
+    <div class='pre p1 fill-light mt0'>onPassword(id: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>, minLength: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>, maxLength: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>): FastFormValidator</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>id</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code>
+	    Password input ID
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>minLength</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>)</code>
+	    Min password character length
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>maxLength</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>)</code>
+	    Max password character length
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>FastFormValidator</code>:
+        
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='ondateofbirth'>
+      onDateOfBirth
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Validates date input fields with a minimum age limit based on the input
+field Id</p>
+
+    <div class='pre p1 fill-light mt0'>onDateOfBirth(id: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>, age: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>): FastFormValidator</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>id</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code>
+	    Date of birth input ID
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>age</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>)</code>
+	    Minimum age allowed checked against today's date
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>FastFormValidator</code>:
+        
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='onsuccesshidefeedback'>
+      onSuccess.hideFeedback
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Hides the element that contains the feedback messages using
+css visibility property</p>
+
+    <div class='pre p1 fill-light mt0'>onSuccess.hideFeedback(): FastFormValidator</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>FastFormValidator</code>:
+        
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='onsuccessremovefeedback'>
+      onSuccess.removeFeedback
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Hides the element that contains the feedback messages using
+css display property</p>
+
+    <div class='pre p1 fill-light mt0'>onSuccess.removeFeedback(): FastFormValidator</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>FastFormValidator</code>:
+        
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='onsuccessaddclass'>
+      onSuccess.addClass
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Adds a classname to the element that contains the feedback
+messages on successful validation</p>
+
+    <div class='pre p1 fill-light mt0'>onSuccess.addClass(): FastFormValidator</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>FastFormValidator</code>:
+        
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='onsuccessremoveclass'>
+      onSuccess.removeClass
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Removes a classname to the element that contains the feedback
+messages on successful validation</p>
+
+    <div class='pre p1 fill-light mt0'>onSuccess.removeClass(): FastFormValidator</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>FastFormValidator</code>:
+        
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='onsubmitbutton'>
+      onSubmitButton
+    </h3>
+    
+    
+  </div>
+  
+
+  
+    <div class='pre p1 fill-light mt0'>onSubmitButton(id: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>, submitAction: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">Function</a>): FastFormValidator</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>id</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code>
+	    Submit button ID
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>submitAction</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">Function</a>)</code>
+	    Function to run when the user submits the form and the form has passed validation (no input errors)
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>FastFormValidator</code>:
+        
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='validate'>
+      validate
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>The last method that should be called  after setting strategies
+for inputs or after using default strategies, it starts the validating
+process by listening to input fields.</p>
+
+    <div class='pre p1 fill-light mt0'>validate(): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></code>:
+        true if the all fields have valid input
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='evaluateinput'>
+      evaluateInput
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>When an input event is triggered on a form input field, the value is
+stored in the instance's state and the respective evaluation function
+(strategy) is called testing all input fields</p>
+
+    <div class='pre p1 fill-light mt0'>evaluateInput(event: <a href="#inputevent">InputEvent</a>): Void</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>event</span> <code class='quiet'>(<a href="#inputevent">InputEvent</a>)</code>
+	    An input event
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>Void</code>:
+        Nothing is returned
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='executestrategies'>
+      executeStrategies
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Calls the evaluation function associated with each corresponding
+input id one after the other</p>
+
+    <div class='pre p1 fill-light mt0'>executeStrategies(): Void</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>Void</code>:
+        Nothing is returned
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='executestrategyof'>
+      executeStrategyOf
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Executes the strategy function of a single input field based on
+the input id</p>
+<p>If no array of arguments are returned, assume a function exists and
+call the function, if arguments do exists, call the function with
+the arguments passed in</p>
+
+    <div class='pre p1 fill-light mt0'>executeStrategyOf(inputId: type): type</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>inputId</span> <code class='quiet'>(type)</code>
+	    {description}
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>type</code>:
+        {description}
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='formhaserrors'>
+      formHasErrors
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Check the instance's state for errors of each input provided</p>
+
+    <div class='pre p1 fill-light mt0'>formHasErrors(): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></code>:
+        True or False
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='setformstatus'>
+      setFormStatus
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Sets the status of the form based on the evaluation of form field
+inputs</p>
+
+    <div class='pre p1 fill-light mt0'>setFormStatus(isValid: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a>): Void</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>isValid</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a>)</code>
+	    whether or not the form is valid
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>Void</code>:
+        Nothing is returned
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='getformstatus'>
+      getFormStatus
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Gets the status of the form based on the evaluation of form field
+inputs</p>
+
+    <div class='pre p1 fill-light mt0'>getFormStatus(): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></code>:
+        whether or not the form is valid
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='generateaccessors'>
+      generateAccessors
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Generates an accessor(getter) property on the FFV instance
+that will return the current value of an input field
+Although a new property is being used to return the value
+the values are actually stored in the instance's state by id</p>
+
+    <div class='pre p1 fill-light mt0'>generateAccessors(id: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>, moduleInstance: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): Void</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>id</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code>
+	    ID of input field
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>moduleInstance</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+	    FastFormValidator instance
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>Void</code>:
+        Nothing is returned
+
+      
+    
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Related</div>
+    
+      
+        <a href="#saveinput">saveInput</a>
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='handlefailure'>
+      handleFailure
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>If validation fails,execute the functions that shows appropriate
+feedback to the user</p>
+
+    <div class='pre p1 fill-light mt0'>handleFailure(): Void</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>Void</code>:
+        Nothing is returned
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='handlesuccess'>
+      handleSuccess
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>If validation succeeds,execute the functions that shows appropriate
+feedback to the user</p>
+
+    <div class='pre p1 fill-light mt0'>handleSuccess(): Void</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>Void</code>:
+        Nothing is returned
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='handleformsubmit'>
+      handleFormSubmit
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>If all fields are successfully validated
+removed all event listeners and execute the function (submitAction())
+that should run when the form is successfully validated</p>
+
+    <div class='pre p1 fill-light mt0'>handleFormSubmit(event: <a href="#inputevent">InputEvent</a>): Void</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>event</span> <code class='quiet'>(<a href="#inputevent">InputEvent</a>)</code>
+	    Input Event
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>Void</code>:
+        Nothing is returned
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='hasmissingstrategies'>
+      hasMissingStrategies
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Checks all ids in Instance to see if they have a corresponding
+strategy function, if not return list of ids that are
+missing their functions</p>
+
+    <div class='pre p1 fill-light mt0'>hasMissingStrategies(): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></code>:
+        an array of ids whose strategy functions are missing
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='initializeinput'>
+      initializeInput
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Prepare input fields to be evaluated by their ids by:
+-storing input ids in a list
+-creating variables to store  and retrieve errors
+-generating accessors (getters) to access the value of each
+input field to be used by their functions</p>
+
+    <div class='pre p1 fill-light mt0'>initializeInput(id: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>, moduleInstance: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): Void</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>id</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code>
+	    ID of input field
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>moduleInstance</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+	    The FFV Instnace
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>Void</code>:
+        Nothing is returned
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='listentoinputs'>
+      listenToInputs
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Attach eventlisteners to all input fields provided</p>
+
+    <div class='pre p1 fill-light mt0'>listenToInputs(dirtyElements: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>): Void</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>dirtyElements</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>)</code>
+	    list of HTML form field elements
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>Void</code>:
+        Nothing is returned
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='inputevent'>
+      InputEvent
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Input event triggered on input fields</p>
+
+    <div class='pre p1 fill-light mt0'>InputEvent</div>
+  
+    <p>
+      Type:
+      <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+    </p>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='saveinput'>
+      saveInput
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Saves the current value of an input field in the instance's state
+so it can be evaluated</p>
+<p>Although values are stored against ids, getters (accessors) are
+created as properties with a <code>Value</code> suffix assuming camelCase</p>
+
+    <div class='pre p1 fill-light mt0'>saveInput(event: <a href="#inputevent">InputEvent</a>): Void</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>event</span> <code class='quiet'>(<a href="#inputevent">InputEvent</a>)</code>
+	    Input event
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>Void</code>:
+        Nothing is returned
+
+      
+    
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Related</div>
+    
+      
+        <a href="#generateaccessors">generateAccessors</a>
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>an id <span class="hljs-keyword">of</span> email will create a property named emailValue
+an id <span class="hljs-keyword">of</span> password2 will create a property named password2Value</pre>
+    
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='stoplistening'>
+      stoplistening
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Remove event listeners from all input fields</p>
+
+    <div class='pre p1 fill-light mt0'>stoplistening(): Void</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>Void</code>:
+        Nothing is returned
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+      </div>
+    </div>
+  <script src='assets/anchor.js'></script>
+  <script src='assets/split.js'></script>
+  <script src='assets/site.js'></script>
+</body>
+</html>

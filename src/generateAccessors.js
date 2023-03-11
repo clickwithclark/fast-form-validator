@@ -6,7 +6,7 @@ import { getFormState, setFormState } from './stateManagement.js';
  * Although a new property is being used to return the value
  * the values are actually stored in the instance's state by id
  *
- * @see saveInput
+ * @see {@link saveInput}
  *
  * @function generateAccessors
  * @param  {String} id ID of input field

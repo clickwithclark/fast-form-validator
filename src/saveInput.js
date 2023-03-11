@@ -13,10 +13,10 @@ import { setFormState } from './stateManagement.js';
  * created as properties with a `Value` suffix assuming camelCase
  *
  *  @example
- *  an id of email will create a property named emailValue
- *  an id of password2 will create a property named password2Value
+ * an id of email will create a property named emailValue
+ * an id of password2 will create a property named password2Value
  *
- * @see generateAccessors
+ * @see {@link generateAccessors}
  *
  * @function saveInput
  * @param  {InputEvent} event Input event
