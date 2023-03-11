@@ -130,22 +130,44 @@ for the current input value and a setter to set the error messages using the ID
 as a prefix with camelCase (e.g. someIDValue & someIDError) to get the value for
 assessment and to set the error messages to display to the user on invalid input
 
+These will be properties and not methods, therefore accessed using:
+
+```this.usernameValue``` and ```this.usernameError```
+
+Or if you hate the this keyword
+
+```FFV.usernameValue``` and ```FFV.usernameError```
+
+Immediately giving you access to form field values
+in the document and a place to store a list of errors
+
 Example:
 
 ```html
 <input type="text" class="form-control" id="username" />
 ```
 
+
+Here a custom strategy is set to evaluate a username input field
 ```js
 FFV.setStrategyFor("username", atLeastSix);
-//returns the value of the input field to be tested
-FFV.usernameValue;
-//sets this message in an array that will be shown if the input field
-FFV.usernameError = "username must be...";
 ```
 
-Error messages are stored in an array and can be displayed all at once or
-once per invalid condition, here is a once per invalid entry example:
+When 'setStrategyFor' is called, it dynamically creates 2 properties on 
+the FFV instance with the ID as a prefix to the word Value and Error giving you quick and easy access to the values of the input fields so 
+you can start immediately validating the values.
+```js 
+this.usernameValue; 
+```
+```js
+this.usernameError = "username must be...";
+```
+```this.usernameError``` sets this message in an array that will be shown if the input field value is invalid
+
+
+Error messages are stored in an array and can be displayed all at once or once per invalid condition.
+
+Here is a once per invalid entry example:
 
 ```js
 function atLeastSix() {
@@ -156,9 +178,12 @@ function atLeastSix() {
     this.usernameError = "❌Username must be at least 6 characters long";
   }
 }
-//Usage: passing only the function reference
-FFV.setStrategyFor("username", atLeastSix);
 ```
+
+To display all error messages at once, append the array instead of replacing the single error message
+
+Usage: passing only the function reference
+FFV.setStrategyFor("username", atLeastSix);
 
 #### Parameters
 
