@@ -153,9 +153,6 @@ Here a custom strategy is set to evaluate a username input field
 FFV.setStrategyFor("username", atLeastSix);
 ```
 
-When 'setStrategyFor' is called, it dynamically creates 2 properties on 
-the FFV instance with the ID as a prefix to the word Value and Error giving you quick and easy access to the values of the input fields so 
-you can start immediately validating the values.
 ```js 
 this.usernameValue; 
 ```
@@ -183,7 +180,10 @@ function atLeastSix() {
 To display all error messages at once, append the array instead of replacing the single error message
 
 Usage: passing only the function reference
+
+```js
 FFV.setStrategyFor("username", atLeastSix);
+```
 
 #### Parameters
 
