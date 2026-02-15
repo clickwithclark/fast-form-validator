@@ -1,0 +1,44 @@
+{
+  "name": "fast-form-validator",
+  "version": "1.1.18",
+  "description": "",
+  "main": "index.js",
+  "exports": {
+    "import": "./UMD/ffv.min.js",
+    "require": "./UMD/ffv.min.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "docs": "npx documentation build src/** -f md > README[sample].md",
+    "html": "npx documentation build src/** -f html -o docs",
+    "release": "standard-version && git push --follow-tags origin main && npm publish",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:clickwithclark/fast-form-validator.git"
+  },
+  "keywords": [
+    "form validator",
+    "fast form validator",
+    "validate input"
+  ],
+  "author": "clickwithclark",
+  "license": "MIT",
+  "dependencies": {
+    "eslint-config-clickwithclark": "^3.2.4"
+  },
+  "devDependencies": {
+    "standard-version": "^9.3.1",
+    "terser-webpack-plugin": "^5.3.6",
+    "webpack": "^5.52.1",
+    "webpack-cli": "^4.8.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "clickwithclark"
+    ]
+  }
+}

@@ -158,7 +158,7 @@ class FastFormValidator {
    */
   onEmail(id) {
     const emailStrategy = function (fieldId) {
-      const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      const regex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
       const value = this[`${fieldId}Value`];
 
       if (!value) {
