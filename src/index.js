@@ -178,9 +178,7 @@ class FastFormValidator {
     const passwordStrategy = function (fieldId, minLen, maxLen) {
       const value = this[`${fieldId}Value`];
       const regex = new RegExp(
-        `((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{${minLen},${maxLen}})`,
-        "i",
-      );
+        `((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{${minLen},${maxLen}})`);
 
       if (!value) {
         this[`${fieldId}Error`] = "Password cannot be empty";
