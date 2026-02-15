@@ -39,6 +39,16 @@ FFV.setStrategyFor('username', atLeastSix)
   // .onSuccess.hideFeedback()
   .onSuccess.removeClass('alert-dark')
   .validate();
+
+console.log('Testing multiple forms...');
+  
+  // Create a second form instance
+  const form2 = new FastFormValidator();
+  console.log('Second form created:', form2);
+  console.log('Are they different?', FFV !== form2);
+
+
+
       </script>
   <style type="">
     body{

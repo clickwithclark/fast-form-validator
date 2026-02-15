@@ -1,19 +1,21 @@
-const path = require('path');
+const path = require("path");
 // const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
-  entry: ['./src/index.js'],
+  entry: ["./src/index.js"],
   output: {
-    filename: 'ffv.min.js',
-    path: path.resolve(__dirname, 'UMD'),
+    filename: "ffv.min.js",
+    path: path.resolve(__dirname, "UMD"),
 
     library: {
-      type: 'umd',
+      name: "FFV",
+      type: "umd",
+      export: "FFV",
     },
     // prevent error: `Uncaught ReferenceError: self is not defined`
-    globalObject: 'this',
+    globalObject: "this",
   },
-  mode: 'production',
+  mode: "production",
   // mode: 'development',
   watch: true,
   // devtool:'hidden-cheap-module-source-map'
