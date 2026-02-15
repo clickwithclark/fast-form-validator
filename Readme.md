@@ -1,284 +1,418 @@
 ![Fast Form Validator Logo](./img/ffv_logo.png)  
 ![Twitter Follow](https://img.shields.io/twitter/follow/clickwithclark?style=social) ![GitHub file size in bytes](https://img.shields.io/github/size/clickwithclark/fast-form-validator/UMD/ffv.min.js?style=flat-square) ![npm](https://img.shields.io/npm/v/fast-form-validator?style=flat-square)
+# 🚀 Fast Form Validator (FFV)
 
-### Table of Contents
+[![npm version](https://img.shields.io/npm/v/fast-form-validator?style=flat-square)](https://www.npmjs.com/package/fast-form-validator)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/clickwithclark/fast-form-validator/ci.yml?branch=main&style=flat-square)](https://github.com/clickwithclark/fast-form-validator/actions)
+[![Bundle Size](https://img.shields.io/bundlephobia/minzip/fast-form-validator?style=flat-square)](https://bundlephobia.com/package/fast-form-validator)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
 
-- [fast-form-validator][1]
-  - [Properties][2]
-  - [Examples][3]
-  - [onEmail][4]
-    - [Parameters][5]
-  - [onPassword][6]
-    - [Parameters][7]
-  - [onDateOfBirth][8]
-    - [Parameters][9]
-  - [setStrategyFor][10]
-    - [Parameters][11]
-  - [onSubmitButton][12]
-    - [Parameters][13]
-  - [displayErrorsHere][14]
-    - [Parameters][15]
-  - [onSuccess.hideFeedback][16]
-  - [onSuccess.removeFeedback][17]
-  - [onSuccess.addClass][25]
-  - [onSuccess.removeClass][26]
-  - [validate][18]
+A lightweight, chainable JavaScript form validation library with **zero dependencies**. Simple API, powerful validation, works everywhere.
 
-## fast-form-validator
+## ✨ Features
 
-used as FFV is a streamlined solution to validate input fields.
+- 🔗 **Chainable API** - Fluent, readable syntax
+- 🎯 **Zero Dependencies** - Pure JavaScript, no bloat
+- 📦 **Tiny Bundle** - Less than 5KB minified + gzipped
+- 🎨 **Customizable** - Create your own validation strategies
+- 🔧 **Framework Agnostic** - Works with vanilla JS, React, Vue, etc.
+- 💪 **TypeScript Support** - Full type definitions included
+- ♿ **Accessible** - WCAG compliant error messaging
+- 🌐 **Browser Support** - IE11+ and all modern browsers
 
-Type: [Object][19]
+## 📦 Installation
 
-### Properties
+### NPM
 
-- [🔗][4] `onEmail` **[Function][20]** The default email field validator.
-- [🔗][6] `onPassword` **[Function][20]** The default password field validator.
-- [🔗][8] `onDateOfBirth` **[Function][20]** The default date field validator.
-- [🔗][10] `setStrategyFor` **[Function][20]** Creates a custom validator for a given input field.
-- [🔗][12] `onSubmitButton` **[Function][20]** Executes a function when a **VALID** form is submitted.
-- [🔗][14]`displayErrorsHere` **[Function][20]** The HTML container (usually a div)
-  that will show the list of feedback Messages.
-- `onSuccess` **[Object][19]** Contains two(4) ways to hide or handle the feedback element.
-
-  - [🔗][17]`onSuccess.removeFeedback` **[Function][20]** Hides the feedback element based on the display CSS property.
-  - [🔗][16]`onSuccess.hideFeedback` **[Function][20]** Hides the feedback element based on the visibility CSS property.
-  - [🔗][25]`onSuccess.addClass` **[Function][20]** Add a class to feedback element classList.
-  - [🔗][26]`onSuccess.removeClass` **[Function][20]** Remove a class from feedback element classList.
-
-- [🔗][18]`validate` **[Function][20]** Starts the validating
-  process by listening for changes on input fields.
-
-### Examples
-
-```javascript
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>Your Form</title>
-<script defer type="module" src="https://unpkg.com/fast-form-validator@latest/UMD/ffv.min.js"></script>
-<script>
-
-FFV.onEmail('email')
-.onPassword('password', 4, 22)
-.onDateOfBirth('dob', 18)
-.setStrategyFor('username', atLeastSix)
-.displayErrorsHere('showErrors')
-.onSuccess.removeFeedback()
-.onSubmitButton('submitBtn', hooray)
-.validate();
-
-</script>
-</head>
-<body>
-<!-- form here -->
-</body>
-</html>
-
-
-//Usage on Node, just require the module
-
-npm i fast-form-validator
-
-const { FFV } = require('fast-form-validator');
+```bash
+npm install fast-form-validator
 ```
 
-### onEmail
-
-Validates email input fields based on the input field ID
-
-#### Parameters
-
-- `id` **[String][21]** email input ID
-
-Returns **[fast-form-validator][22]**
-
-### onPassword
-
-Validates password input fields with a minimum and maximum character limit
-based on the input field ID.
-It enforces at least One upper case ,one lowercase and one digit.
-Default character limits are between 6 and 15 characters
-
-#### Parameters
-
-- `id` **[String][21]** Password input ID
-- `minLength` **[Number][23]** Min password character length
-- `maxLength` **[Number][23]** Max password character length
-
-Returns **[fast-form-validator][22]**
-
-### onDateOfBirth
-
-Validates date input fields with a minimum age limit based on the input
-field ID
-
-#### Parameters
-
-- `id` **[String][21]** Date of birth input ID
-- `age` **[Number][23]** Minimum age allowed checked against today's date
-
-Returns **[fast-form-validator][22]**
-
-### setStrategyFor
-
-Provide fast-form-validator with the ID of an input field and the respective
-function to validate that input field
-
-When an ID is passed, the ID is used as a prefix to create a getter
-for the current input value and a setter to set the error messages using the ID
-as a prefix with camelCase (e.g. someIDValue & someIDError) to get the value for
-assessment and to set the error messages to display to the user on invalid input
-
-These will be properties and not methods, therefore accessed using:
-
-```this.usernameValue``` and ```this.usernameError```
-
-Or if you hate the this keyword
-
-```FFV.usernameValue``` and ```FFV.usernameError```
-
-Immediately giving you access to form field values
-in the document and a place to store a list of errors
-
-Example:
+### CDN
 
 ```html
-<input type="text" class="form-control" id="username" />
+<script src="https://unpkg.com/fast-form-validator@latest/UMD/ffv.min.js"></script>
 ```
 
+## 🚀 Quick Start
 
-Here a custom strategy is set to evaluate a username input field
-```js
-FFV.setStrategyFor("username", atLeastSix);
+### HTML
+
+```html
+<form id="signup-form">
+  <input type="email" id="email" />
+  <input type="password" id="password" />
+  <input type="date" id="dob" />
+  <button type="submit" id="submit-btn">Sign Up</button>
+  <div id="error-messages"></div>
+</form>
 ```
 
-```js 
-this.usernameValue; 
-```
-```js
-this.usernameError = "username must be...";
-```
-```this.usernameError``` sets this message in an array that will be shown if the input field value is invalid
+### JavaScript (Browser)
 
+```javascript
+FFV.onEmail('email')
+   .onPassword('password', 8, 20)
+   .onDateOfBirth('dob', 18)
+   .displayErrorsHere('error-messages')
+   .onSuccess.removeFeedback()
+   .onSubmitButton('submit-btn', handleSubmit)
+   .validate();
 
-Error messages are stored in an array and can be displayed all at once or once per invalid condition.
-
-Here is a once per invalid entry example:
-
-```js
-function atLeastSix() {
-  if (!this.usernameValue) {
-    this.usernameError = "❌ username can not be empty";
-  }
-  if (this.usernameValue && this.usernameValue.length < 6) {
-    this.usernameError = "❌Username must be at least 6 characters long";
-  }
+function handleSubmit() {
+  console.log('Form is valid!');
+  // Submit your form data
 }
 ```
 
-To display all error messages at once, append the array instead of replacing the single error message
+### JavaScript (Module)
 
-Usage: passing only the function reference
+```javascript
+import { FastFormValidator } from 'fast-form-validator';
 
-```js
-FFV.setStrategyFor("username", atLeastSix);
+const validator = new FastFormValidator();
+
+validator
+  .onEmail('email')
+  .onPassword('password', 8, 20)
+  .displayErrorsHere('error-messages')
+  .validate();
 ```
 
-#### Parameters
+## 📚 API Reference
 
-- `id` **[String][21]** Input field ID
-- `strategyFunction` **[Function][20]** Function to validate that input field
+### Built-in Validators
 
-Returns **[fast-form-validator][22]**
+#### `onEmail(id: string)`
+Validates email format.
 
-### onSubmitButton
+```javascript
+FFV.onEmail('email-field');
+```
 
-Pass a function to be executed when there are no input errors and the user clicks submit. A **successful** submission will immediately stop the submit button from receiving input, execute the desired function, then remove all event listeners for all aformentioned input fields and even the submit button. You can read more on why you would want to remove event listeners [here](https://eloquentjavascript.net/15_event.html) though not as consequential in modern browsers.
+#### `onPassword(id: string, minLength?: number, maxLength?: number)`
+Validates password with complexity requirements (uppercase, lowercase, digit).
 
-#### Parameters
+```javascript
+FFV.onPassword('password-field', 8, 20);
+// Defaults: min=6, max=15
+```
 
-- `id` **[String][21]** Submit button ID
-- `submitAction` **[Function][20]** Function to run when the user submits the form and the form has passed validation (no input errors)
+#### `onDateOfBirth(id: string, minAge?: number)`
+Validates age requirement.
 
-Returns **[fast-form-validator][22]**
+```javascript
+FFV.onDateOfBirth('dob-field', 18);
+// Default: minAge=18
+```
 
-### displayErrorsHere
+### Custom Validation
 
-#### Parameters
+#### `setStrategyFor(id: string, validationFn: Function, ...args: any[])`
+Create custom validation logic.
 
-- `htmlID` **[String][21]** ID of the HTML container element that will display the error messages
+```javascript
+function validateUsername() {
+  const value = this.usernameValue;
+  
+  if (!value) {
+    this.usernameError = 'Username is required';
+  }
+  
+  if (value.length < 3) {
+    this.usernameError = 'Username must be at least 3 characters';
+  }
+  
+  if (!/^[a-zA-Z0-9_]+$/.test(value)) {
+    this.usernameError = 'Username can only contain letters, numbers, and underscores';
+  }
+}
 
-Returns **[fast-form-validator][22]**
+FFV.setStrategyFor('username', validateUsername);
+```
 
-### onSuccess.hideFeedback
+**With Parameters:**
 
-Hides the element that contains the feedback messages using
-css visibility property
+```javascript
+function validateMinLength(id, minLen) {
+  const value = this[`${id}Value`];
+  
+  if (value.length < minLen) {
+    this[`${id}Error`] = `Must be at least ${minLen} characters`;
+  }
+}
 
-Returns **[fast-form-validator][22]**
+FFV.setStrategyFor('bio', validateMinLength, 'bio', 50);
+```
 
-### onSuccess.removeFeedback
+### Display & Feedback
 
-Hides the element that contains the feedback messages using
-css display property
+#### `displayErrorsHere(id: string)`
+Specify where to show validation errors.
 
-Returns **[fast-form-validator][22]**
+```javascript
+FFV.displayErrorsHere('error-container');
+```
 
-### onSuccess.addClass
+#### `onSuccess.hideFeedback()`
+Hide errors using `visibility: hidden` when valid.
 
-Adds a classname to the element that contains the feedback
-messages on successful validation
+```javascript
+FFV.onSuccess.hideFeedback();
+```
 
-Returns **[fast-form-validator][22]**
+#### `onSuccess.removeFeedback()`
+Hide errors using `display: none` when valid.
 
-### onSuccess.removeClass
+```javascript
+FFV.onSuccess.removeFeedback();
+```
 
-Removes a classname to the element that contains the feedback
-messages on successful validation
+#### `onSuccess.addClass(className: string)`
+Add a CSS class when validation succeeds.
 
-Returns **[fast-form-validator][22]**
+```javascript
+FFV.onSuccess.addClass('valid-form');
+```
 
-### validate
+#### `onSuccess.removeClass(className: string)`
+Remove a CSS class when validation succeeds.
 
-The last method that should be called after setting strategies
-for inputs or after using default strategies, it starts the validating
-process by listening to input fields.
+```javascript
+FFV.onSuccess.removeClass('has-errors');
+```
 
-Returns **[Boolean][24]** true if the all fields have valid input, false otherwise
+### Form Submission
 
-## Live Example
+#### `onSubmitButton(id: string, callback: Function)`
+Handle form submission after successful validation.
 
-[Here](https://codepen.io/clickwithclark/full/zYzWeyK)
+```javascript
+FFV.onSubmitButton('submit-btn', () => {
+  // Only called when form is valid
+  submitFormData();
+});
+```
 
-## Purpose
+### Validation Control
 
-I just started learning react observing how it manages state and I got the idea
-to make this module, learning the revealing module pattern as well as strategy pattern along the way
+#### `validate()`
+Start validation and attach event listeners.
 
-[1]: #fast-form-validator
-[2]: #properties
-[3]: #examples
-[4]: #onemail
-[5]: #parameters
-[6]: #onpassword
-[7]: #parameters-1
-[8]: #ondateofbirth
-[9]: #parameters-2
-[10]: #setstrategyfor
-[11]: #parameters-3
-[12]: #onsubmitbutton
-[13]: #parameters-4
-[14]: #displayerrorshere
-[15]: #parameters-5
-[16]: #onsuccesshidefeedback
-[17]: #onsuccessremovefeedback
-[18]: #validate
-[19]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
-[20]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function
-[21]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
-[22]: #fast-form-validator
-[23]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
-[24]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
-[25]: #onsuccessaddclass
-[26]: #onsuccessremoveclass
+```javascript
+const isValid = FFV.validate();
+console.log(isValid); // true or false
+```
+
+## 🎨 Advanced Examples
+
+### Multiple Forms on One Page
+
+```javascript
+// Form 1
+const loginForm = new FastFormValidator();
+loginForm
+  .onEmail('login-email')
+  .onPassword('login-password')
+  .displayErrorsHere('login-errors')
+  .validate();
+
+// Form 2
+const signupForm = new FastFormValidator();
+signupForm
+  .onEmail('signup-email')
+  .onPassword('signup-password', 10, 30)
+  .displayErrorsHere('signup-errors')
+  .validate();
+```
+
+### Conditional Validation
+
+```javascript
+function validateConfirmPassword() {
+  const password = this.passwordValue;
+  const confirm = this.confirmPasswordValue;
+  
+  if (password !== confirm) {
+    this.confirmPasswordError = 'Passwords do not match';
+  }
+}
+
+FFV.onPassword('password')
+   .setStrategyFor('confirmPassword', validateConfirmPassword)
+   .validate();
+```
+
+### Async Validation
+
+```javascript
+function validateUsername() {
+  const username = this.usernameValue;
+  
+  if (!username) {
+    this.usernameError = 'Username required';
+    return;
+  }
+  
+  // Note: FFV validates synchronously, so handle async externally
+  // or use debouncing in your strategy
+  
+  // Example with debouncing
+  clearTimeout(this.usernameTimeout);
+  this.usernameTimeout = setTimeout(async () => {
+    const available = await checkUsernameAvailability(username);
+    if (!available) {
+      this.usernameError = 'Username already taken';
+      this.validate(); // Re-trigger validation
+    }
+  }, 500);
+}
+```
+
+### React Integration
+
+```jsx
+import { useEffect, useRef } from 'react';
+import { FastFormValidator } from 'fast-form-validator';
+
+function SignupForm() {
+  const validatorRef = useRef(null);
+  
+  useEffect(() => {
+    validatorRef.current = new FastFormValidator();
+    
+    validatorRef.current
+      .onEmail('email')
+      .onPassword('password', 8, 20)
+      .displayErrorsHere('errors')
+      .onSubmitButton('submit', handleSubmit)
+      .validate();
+    
+    return () => {
+      validatorRef.current.destroy();
+    };
+  }, []);
+  
+  const handleSubmit = () => {
+    console.log('Form submitted!');
+  };
+  
+  return (
+    <form>
+      <input type="email" id="email" />
+      <input type="password" id="password" />
+      <button type="submit" id="submit">Sign Up</button>
+      <div id="errors"></div>
+    </form>
+  );
+}
+```
+
+### Custom Error Styling
+
+```javascript
+FFV.onEmail('email')
+   .displayErrorsHere('errors')
+   .onSuccess.removeClass('error-visible')
+   .validate();
+```
+
+```css
+#errors {
+  padding: 1rem;
+  border-radius: 4px;
+  margin-top: 1rem;
+}
+
+#errors.error-visible {
+  background: #fee;
+  border: 1px solid #c33;
+  color: #c33;
+}
+
+#errors:not(.error-visible) {
+  display: none;
+}
+```
+
+## 🔧 Migration Guide
+
+### From v1.x to v2.x
+
+**Breaking Changes:**
+
+1. **Multiple Instances**: If you need multiple forms, use `new FastFormValidator()` instead of the global `FFV`
+
+```javascript
+// Old (v1.x) - only one form per page
+FFV.onEmail('email').validate();
+
+// New (v2.x) - multiple forms supported
+const form1 = new FastFormValidator();
+form1.onEmail('email1').validate();
+
+const form2 = new FastFormValidator();
+form2.onEmail('email2').validate();
+
+// Or keep using global FFV for single form
+FFV.onEmail('email').validate();
+```
+
+2. **Error Handling**: Missing DOM elements now throw errors instead of console warnings
+
+```javascript
+// Add error handling if elements might not exist
+try {
+  FFV.displayErrorsHere('errors').validate();
+} catch (error) {
+  console.error('Validation setup failed:', error);
+}
+```
+
+## 🤝 Contributing
+
+Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) first.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+### Development
+
+```bash
+# Install dependencies
+npm install
+
+# Run tests
+npm test
+
+# Run tests in watch mode
+npm run test:watch
+
+# Build for production
+npm run build
+
+# Run linter
+npm run lint
+```
+
+## 📝 License
+
+MIT © [clickwithclark](https://github.com/clickwithclark)
+
+## 🙏 Acknowledgments
+
+- Inspired by the Strategy Pattern and fluent interfaces
+- Built with ❤️ for the JavaScript community
+
+## 📞 Support
+
+- 📫 [Open an issue](https://github.com/clickwithclark/fast-form-validator/issues)
+- 💬 [Discussions](https://github.com/clickwithclark/fast-form-validator/discussions)
+- 🐦 [Follow @clickwithclark](https://twitter.com/clickwithclark)
+
+---
+
+**[⬆ back to top](#-fast-form-validator-ffv)**
