@@ -17,7 +17,7 @@ module.exports = {
   },
   mode: "production",
   // mode: 'development',
-  watch: true,
+  //watch: true,
   // devtool:'hidden-cheap-module-source-map'
   // optimization: {
   //   minimize: true,
