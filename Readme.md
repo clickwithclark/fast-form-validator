@@ -368,6 +368,9 @@ try {
   console.error('Validation setup failed:', error);
 }
 ```
+## 🎮 Live Demo
+
+See Fast Form Validator in action: **[CodePen Demo](https://codepen.io/clickwithclark/full/zYzWeyK)**
 
 ## 🤝 Contributing
 
